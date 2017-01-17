@@ -1,8 +1,6 @@
 # README
 
-![Build Status](https://codeship.com/projects/41a46fe0-bf10-0134-42bb-7a625a3fabd4/status?branch=master)
-![Code Climate](https://codeclimate.com/github/aimeebachari/boston-bar-review.png)
-![Coverage Status](https://coveralls.io/repos/aimeebachari/boston-bar-review/badge.png)
+[ ![Codeship Status for aimeebachari/boston-bar-review](https://app.codeship.com/projects/41a46fe0-bf10-0134-42bb-7a625a3fabd4/status?branch=master)](https://app.codeship.com/projects/196483)
 
 This README would normally document whatever steps are necessary to get the
 application up and running.
