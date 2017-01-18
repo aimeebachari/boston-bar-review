@@ -1,7 +1,7 @@
 require 'rails_helper'
 
 feature "user signs up for account" do
-  scenario "successfully" do
+  xscenario "successfully" do
     visit "/users/sign_up"
 
     fill_in "First Name", with: "Sonic"
