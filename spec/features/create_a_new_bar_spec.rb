@@ -29,6 +29,25 @@ RSpec.feature "User creates a new bar" do
     expect(page).to have_content "JJ's"
   end
 
+  scenario "successful bar creation" do
+    login_as_user(user_one)
+    visit bars_path
+    expect(page).to have_content "New Bar Form"
+
+    fill_in "Name", with: "JJ's"
+    fill_in "City", with: "Boston"
+    fill_in "State", with: "MA"
+    fill_in "Zip", with: "02111"
+    fill_in "Url", with: "www.jjs.com"
+    fill_in "Description", with: "A great bar downtown!"
+
+    click_button "Add Bar"
+
+    field = find_field("Name")
+    expect(field.value).to eq("JJ's")
+    expect(page).to have_content "Address can't be blank"
+  end
+
   scenario "failed bar creation" do
     visit bars_path
     expect(page).to have_content "New Bar Form"

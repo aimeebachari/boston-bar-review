@@ -5,12 +5,12 @@
 <h3>Rating: <%= @average.to_f.round(1) %> </h3>
 
 <div>
-  <li> <%= @bar.address %> </li>
-  <li> <%= @bar.city %>, <%= @bar.state %>, <%= @bar.zip %> </li>
+  <p> <%= @bar.address %> </p>
+  <p> <%= @bar.city %>, <%= @bar.state %>, <%= @bar.zip %> </p>
 </div>
 
 <div>
   <% unless @bar.url.nil? %>
-    <li> <%= @bar.url %> </li>
+    <p> <%= @bar.url %> </p>
   <% end %>
 </div>

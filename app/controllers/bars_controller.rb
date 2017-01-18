@@ -18,8 +18,9 @@ class BarsController < ApplicationController
       flash[:notice] = "Bar created successfully!"
       redirect_to @bar
     else
+      @bars = Bar.all
       flash[:notice] = @bar.errors.full_messages.to_sentence
-      redirect_to @bar
+      render :index
     end
   end
 
