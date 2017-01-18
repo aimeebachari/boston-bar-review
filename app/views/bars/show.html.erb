@@ -1,0 +1,16 @@
+<%= notice %>
+
+<h1> <%= @bar.name %> </h1>
+
+<h3>Rating: <%= @average.to_f.round(1) %> </h3>
+
+<div>
+  <li> <%= @bar.address %> </li>
+  <li> <%= @bar.city %>, <%= @bar.state %>, <%= @bar.zip %> </li>
+</div>
+
+<div>
+  <% unless @bar.url.nil? %>
+    <li> <%= @bar.url %> </li>
+  <% end %>
+</div>

@@ -4,6 +4,13 @@ Coveralls.wear!('rails')
 
 RSpec.configure do |config|
 
+  def login_as_user(user)
+    visit "/users/sign_in"
+    fill_in "Email", with: user.email
+    fill_in "Password", with: user.password
+    click_on "Log in"
+  end
+
   config.expect_with :rspec do |expectations|
     # This option will default to `true` in RSpec 4. It makes the `description`
     # and `failure_message` of custom matchers include text for helper methods
