@@ -8,7 +8,7 @@ class CreateBars < ActiveRecord::Migration[5.0]
       t.string :zip, null: false
       t.string :url
       t.text :description
-      t.belongs_to :user, null: false
+      t.belongs_to :user
 
       t.timestamps
     end

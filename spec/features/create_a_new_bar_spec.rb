@@ -14,7 +14,6 @@ RSpec.feature "User creates a new bar" do
   }
 
   scenario "successful bar creation" do
-    #use factory girl to make a new yuser
     login_as_user(user_one)
     visit bars_path
     expect(page).to have_content "New Bar Form"
