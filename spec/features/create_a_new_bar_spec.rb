@@ -1,7 +1,11 @@
 require "rails_helper"
+require "database_cleaner"
 
+DatabaseCleaner.strategy = :truncation
 
 RSpec.feature "User creates a new bar" do
+  DatabaseCleaner.start
+
   let(:user_one) { User.create(first_name: "Sam",
     last_name: "Cole",
     username: "Sammo",
@@ -62,4 +66,5 @@ RSpec.feature "User creates a new bar" do
     expect(page).to have_content "Zip is not a number "
     expect(page).to have_content "Zip is the wrong length (should be 5 characters)"
   end
+  DatabaseCleaner.clean
 end
