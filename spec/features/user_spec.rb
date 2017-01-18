@@ -26,7 +26,7 @@ feature "user signs up for account" do
     fill_in "Password confirmation", with: "e;vpkmefklvnr"
 
     click_on "Sign up"
-    expect(page).to have_content "Passwords must match"
+    expect(page).to have_content "Password confirmation doesn't match Password"
   end
 
   scenario "unsuccessfully - missing field" do
