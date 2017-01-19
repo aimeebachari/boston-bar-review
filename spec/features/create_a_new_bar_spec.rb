@@ -52,6 +52,7 @@ RSpec.feature "User creates a new bar" do
   end
 
   scenario "failed bar creation" do
+    login_as_user(user_one)
     visit bars_path
     expect(page).to have_content "New Bar Form"
 
