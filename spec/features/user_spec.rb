@@ -1,6 +1,10 @@
 require 'rails_helper'
 
 feature "user signs up for account" do
+
+  let (:user) {User.create(first_name: "Sonic", last_name: "The Hedgehog",
+      username: "Sonic The Hedgehog", email: "sonic@hedgehog.com", password: "password") }
+
   xscenario "successfully" do
     visit "/users/sign_up"
 
@@ -43,16 +47,8 @@ feature "user signs up for account" do
   end
 
   scenario "successfully signs out" do
-    visit "/users/sign_up"
+    login_as_user(user)
 
-    fill_in "First Name", with: "Sonic"
-    fill_in "Last Name", with: "The Hedgehog"
-    fill_in "Username", with: "Sonic The Hedgehog"
-    fill_in "Email", with: "sonic@hedgehog.com"
-    fill_in "Password", with: "password"
-    fill_in "Password confirmation", with: "password"
-
-    click_on "Create Account"
     visit edit_user_registration_path
 
     click_on "Logout"
@@ -60,40 +56,32 @@ feature "user signs up for account" do
   end
 
   scenario "successfully edits user information" do
-    visit edit_user_registration_path
+    login_as_user(user)
 
-    click_on "Edit"
+    visit edit_user_registration_path
 
     fill_in "First Name", with: "Sam"
     fill_in "Last Name", with: "Cole"
     fill_in "Username", with: "samcole"
-    fill_in "email", with: "samcole@hello.com"
+    fill_in "Email", with: "samcole@hello.com"
 
     click_on "Update"
-    expect(user.first_name).to_be "Sam"
-    expect(user.last_name).to_be "Cole"
-    expect(user.username).to_be "samcole"
-    expect(user.email).to_be "samcole@hello.com"
+
+    expect(user.first_name).to eq "Sam"
+    expect(user.last_name).to eq"Cole"
+    expect(user.username).to eq "samcole"
+    expect(user.email).to eq "samcole@hello.com"
   end
 
   scenario "successfully deletes account" do
-    visit "/users/sign_up"
+    login_as_user(user)
 
-    fill_in "First Name", with: "Sonic"
-    fill_in "Last Name", with: "The Hedgehog"
-    fill_in "Username", with: "Sonic The Hedgehog"
-    fill_in "Email", with: "sonic@hedgehog.com"
-    fill_in "Password", with: "password"
-    fill_in "Password confirmation", with: "password"
-
-    click_on "Sign up"
     visit edit_user_registration_path
-    click "Edit Account"
 
     # save_and_open_page
 
     click_on "Cancel my account"
-    expect(user).not_to exist
+    expect(user).to be false
     expect(page).to have_content "Account Deleted"
   end
 end

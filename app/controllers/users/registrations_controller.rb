@@ -25,11 +25,6 @@ class Users::RegistrationsController < Devise::RegistrationsController
   # DELETE /resource
   def destroy
     super
-    @user = User.find(params[:id])
-    if @user.destory
-      flash[:notice] = "Account deleted"
-      redirect_to root_path
-    end
   end
 
   def show
