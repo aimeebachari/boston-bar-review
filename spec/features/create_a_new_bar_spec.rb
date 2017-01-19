@@ -3,6 +3,8 @@ require "database_cleaner"
 
 DatabaseCleaner.strategy = :truncation
 
+
+
 RSpec.feature "User creates a new bar" do
   DatabaseCleaner.start
 
