@@ -68,3 +68,37 @@ RSpec.feature "User creates a new bar" do
   end
   DatabaseCleaner.clean
 end
+
+feature "can delete a bar" do
+  DatabaseCleaner.start
+
+  let(:user_one) { User.create(
+    first_name: "Sam",
+    last_name: "Cole",
+    username: "Sammo",
+    email: "123@gmail.com",
+    password: "password"
+  )}
+
+  let(:bar) { Bar.create(
+    name: "Sample Bar",
+    address: "1 Main St.",
+    city: "Boston",
+    state: "MA",
+    zip: "02111",
+    user: user_one
+  )}
+
+  scenario "successfully" do
+    login_as_user(user_one)
+    bar
+    visit "/bars"
+    
+    expect(page).to have_content("Sample Bar")
+
+    click_on "Sample Bar"
+    click_on "Delete"
+
+    expect(page).to_not have_content("Sample Bar")
+  end
+end
