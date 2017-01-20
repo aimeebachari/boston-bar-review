@@ -23,6 +23,7 @@ class BarsController < ApplicationController
     @user = current_user
     @bar = Bar.new(bar_params)
     @bar.user = current_user
+
     if @bar.save
       flash[:notice] = "Bar created successfully!"
       redirect_to @bar
@@ -35,8 +36,13 @@ class BarsController < ApplicationController
 
   def edit
     @bar = Bar.find(params[:id])
-
-    render :edit
+    @user = current_user
+    if @user.id == @bar.user_id
+      render :edit
+    else
+      flash[:notice] = "You don't have permission to edit this bar!"
+      redirect_to @bar
+    end
   end
 
   def update
@@ -50,8 +56,16 @@ class BarsController < ApplicationController
   end
 
   def destroy
-    Bar.destroy(params[:id])
-    redirect_to bars_path
+    @bar = Bar.find(params[:id])
+    @user = current_user
+
+    if @user.id == @bar.user_id
+      Bar.destroy(params[:id])
+      redirect_to bars_path
+    else
+      flash[:notice] = "You don't have permission to delete this bar!"
+      redirect_to @bar
+    end
   end
 
   private
