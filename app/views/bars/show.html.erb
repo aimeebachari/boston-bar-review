@@ -1,5 +1,5 @@
-<%= notice %>
-
+<br />
+<%= link_to "Delete", @bar, method: :delete, data: {confirm: "Are you sure?"} %>
 <h1> <%= @bar.name %> </h1>
 
 <h3>Rating: <%= @average.to_f.round(2) %> </h3>
