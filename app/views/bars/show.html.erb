@@ -1,8 +1,13 @@
+<<<<<<< HEAD
 <div class="row container">
   <div class="columns large-6 small-12">
     <h2> <%= @bar.name %> </h2>
 
     <h3>Rating: <%= @average.to_f.round(1) %> </h3>
+
+<br />
+<%= link_to "Delete", @bar, method: :delete, data: {confirm: "Are you sure?"} %>
+<h1> <%= @bar.name %> </h1>
 
     <div>
       <p> <%= @bar.address %> </p>
