@@ -1,10 +1,13 @@
 require "rails_helper"
+require "database_cleaner"
 
+DatabaseCleaner.strategy = :truncation
 
 user_one = User.create(first_name: "Sam", last_name: "Cole", username: "Sammo", email: "123@gmail.com", encrypted_password: "ththth")
 bar_one = Bar.create(name: "JJ's", address: "123 Summer Street", city: "Boston", state: "MA", zip: "02111", url: "", description: "", user: user_one)
 
 RSpec.describe Bar, :type => :model do
+  DatabaseCleaner.start
 
   it "is valid with a name" do
     expect(bar_one.name).to eq("JJ's")
@@ -50,5 +53,5 @@ RSpec.describe Bar, :type => :model do
     bad_bar = Bar.new(zip: nil)
     expect(bad_bar).to_not be_valid
   end
-
+  DatabaseCleaner.clean
 end

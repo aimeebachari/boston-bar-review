@@ -5,3 +5,30 @@
 #
 #   movies = Movie.create([{ name: 'Star Wars' }, { name: 'Lord of the Rings' }])
 #   Character.create(name: 'Luke', movie: movies.first)
+
+Bar.create(id: 1,
+ name: "Joe's Bar",
+ address: "123 Main Street",
+ city: "Boston",
+ state: "MA",
+ zip: "02111",
+ url: "",
+ description: "")
+
+Bar.create(id: 2,
+ name: "Bill's Bar",
+ address: "321 Main Street",
+ city: "Arlington",
+ state: "MA",
+ zip: "02111",
+ url: "",
+ description: "")
+
+Bar.create(id: 3,
+ name: "Kyle's Bar",
+ address: "123 Summer Street",
+ city: "Somerville",
+ state: "MA",
+ zip: "02111",
+ url: "",
+ description: "")

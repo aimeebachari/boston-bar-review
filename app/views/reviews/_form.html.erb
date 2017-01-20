@@ -1,0 +1,17 @@
+<%= form_for [@bar, @review] do |f| %>
+
+  <div>
+    <%= f.label :body, "Review" %>
+    <%= f.text_field :body %>
+  </div>
+
+  <div class="row">
+    <%= f.label :rating, "Rating" %>
+      <%= f.collection_radio_buttons :rating, [[1, "1"], [2, "2"], [3, "3"], [4, "4"], [5, "5"]], :first, :last %>
+  </div>
+
+  <div>
+    <%= f.submit "Submit Review" %>
+  </div>
+
+<% end %>
