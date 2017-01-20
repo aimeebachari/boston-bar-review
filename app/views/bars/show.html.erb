@@ -10,6 +10,10 @@
 </div>
 
 <div>
+  <%= link_to 'Edit', edit_bar_path(@bar) %>
+</div>
+
+<div>
   <% unless @bar.url.nil? %>
     <p> <%= @bar.url %> </p>
   <% end %>
