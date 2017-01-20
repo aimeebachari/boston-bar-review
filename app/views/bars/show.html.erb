@@ -1,15 +1,29 @@
+<div class="row container">
+  <div class="columns large-6 small-12">
+    <h2> <%= @bar.name %> </h2>
 
-<h1> <%= @bar.name %> </h1>
+    <h3>Rating: <%= @average.to_f.round(1) %> </h3>
 
-<h3>Rating: <%= @average.to_f.round(1) %> </h3>
+    <div>
+      <p> <%= @bar.address %> </p>
+      <p> <%= @bar.city %>, <%= @bar.state %>, <%= @bar.zip %> </p>
+    </div>
 
-<div>
-  <p> <%= @bar.address %> </p>
-  <p> <%= @bar.city %>, <%= @bar.state %>, <%= @bar.zip %> </p>
-</div>
+    <div>
+      <% unless @bar.url.nil? %>
+        <p> <%= @bar.url %> </p>
+      <% end %>
+    </div>
 
-<div>
-  <% unless @bar.url.nil? %>
-    <p> <%= @bar.url %> </p>
-  <% end %>
+    <div>
+      <% unless @bar.description.nil? %>
+        <p> <%= @bar.description %> </p>
+      <% end %>
+    </div>
+
+  <div class="barlist columns large-6 small-12">
+    <div>
+      <%= image_tag("Fenway-Park-Tour-1.jpg") %>
+    </div>
+  </div>
 </div>

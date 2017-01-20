@@ -1,0 +1,81 @@
+body {
+  padding-top: 20px;
+  padding-left: 50px;
+  padding-right: 50px;
+}
+
+#default-image {
+  padding: 60px;
+}
+
+.active {
+  text-decoration-color: #3B8183;
+  font-family: inherit;
+  font-weight: bold;
+  font-size: 40px;
+}
+
+.top-bar-left {
+  padding-left: 10px;
+}
+
+#user-email {
+  text-align: right;
+  color: white;
+  font-weight:normal;
+}
+
+#search {
+  width: auto;
+}
+
+.barlist {
+  padding-top: 40px;
+  color: white;
+  font-size: 25px;
+}
+
+#bars-index {
+  padding-top: 20px;
+}
+
+.bar-form {
+  padding-top: 40px;
+  padding-bottom: 30px;
+  color: white;
+}
+
+h3 {
+  color: white;
+}
+
+label {
+  color: white;
+  font-weight: bold;
+}
+
+i, em {
+  color: white;
+  font-weight: bold;
+}
+
+#edit-page {
+  padding-top: 40px;
+  padding-bottom: 30px;
+}
+
+#edit-form {
+  padding-bottom: 30px;
+}
+
+body {
+  background-image: url(boston-404526.jpg)
+}
+
+#field-names {
+  color: white;
+}
+
+.top-bar {
+  background-color: transparent;
+}
