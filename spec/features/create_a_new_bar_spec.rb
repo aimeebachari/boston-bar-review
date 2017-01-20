@@ -6,11 +6,13 @@ DatabaseCleaner.strategy = :truncation
 RSpec.feature "User creates a new bar" do
   DatabaseCleaner.start
 
-  let(:user_one) { User.create(first_name: "Sam",
+  let(:user_one) { User.create(
+    first_name: "Sam",
     last_name: "Cole",
     username: "Sammo",
     email: "123@gmail.com",
-    password: "password")
+    password: "password"
+    )
   }
 
   scenario "successful bar creation" do
@@ -71,11 +73,13 @@ end
 RSpec.feature "User edits a bar" do
   DatabaseCleaner.start
 
-  let(:user_one) { User.create(first_name: "Sam",
+  let(:user_one) { User.create(
+    first_name: "Sam",
     last_name: "Cole",
     username: "Sammo",
     email: "123@gmail.com",
-    password: "password")
+    password: "password"
+    )
   }
 
   let(:bar) { Bar.create(
