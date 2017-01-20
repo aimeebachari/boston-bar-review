@@ -30,7 +30,7 @@ RSpec.feature "User creates a new bar" do
     fill_in "Url", with: "www.jjs.com"
     fill_in "Description", with: "A great bar downtown!"
 
-    click_button "Submit"
+    click_button "Add Bar"
 
     expect(page).to have_content "Bar created successfully!"
     expect(page).to have_content "JJ's"
@@ -48,7 +48,7 @@ RSpec.feature "User creates a new bar" do
     fill_in "Url", with: "www.jjs.com"
     fill_in "Description", with: "A great bar downtown!"
 
-    click_button "Submit"
+    click_button "Add Bar"
 
     field = find_field("Name")
     expect(field.value).to eq("JJ's")
@@ -60,7 +60,7 @@ RSpec.feature "User creates a new bar" do
     visit bars_path
     expect(page).to have_content "New Bar Form"
 
-    click_button "Submit"
+    click_button "Add Bar"
 
     expect(page).to have_content "Name can't be blank"
     expect(page).to have_content "Address can't be blank"
