@@ -5,7 +5,11 @@ body {
 }
 
 #default-image {
-  padding: 60px;
+  padding-top: 60px;
+}
+
+#cancel-button {
+  padding-top: 60px;
 }
 
 .active {

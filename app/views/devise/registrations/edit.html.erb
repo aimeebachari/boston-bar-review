@@ -55,10 +55,9 @@
     <% end %>
   </div>
 
-  <div class="columns large-6 small-12" id="default-image">
-    <p class="image"><%= image_tag("fenway.jpg") %></p>
-
-    <h3>Unhappy?</h3>
+  <div class="columns large-4 small-12" id="default-image">
+    <p class="image"><%= image_tag("beer.jpg") %></p>
+    <h3>Unhappy?</h3><br />
 
     <%= button_to "Cancel my account", registration_path(resource_name), data: { confirm: "Are you sure?" }, method: :delete %> <br />
 
