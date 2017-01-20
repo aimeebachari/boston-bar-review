@@ -3,8 +3,7 @@ Rails.application.routes.draw do
 
   devise_for :users
 
-  resources :bars, only: [:index, :show, :create, :edit, :update]
-  resources :bars, only: [:index, :show, :create, :destroy]
+  resources :bars, only: [:index, :show, :create, :edit, :update, :destroy]
 
   root "bars#index"
 end

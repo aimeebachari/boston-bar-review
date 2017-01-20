@@ -71,71 +71,79 @@ RSpec.feature "User creates a new bar" do
   DatabaseCleaner.clean
 end
 
+feature "can delete a bar" do
+  DatabaseCleaner.start
+
+  let(:user_one) { User.create(
+    first_name: "Sam",
+    last_name: "Cole",
+    username: "Sammo",
+    email: "123@gmail.com",
+    password: "password"
+  )}
+
+  let(:bar) { Bar.create(
+    name: "Sample Bar",
+    address: "1 Main St.",
+    city: "Boston",
+    state: "MA",
+    zip: "02111",
+    user: user_one
+  )}
+
+  scenario "successfully" do
+    login_as_user(user_one)
+    bar
+    visit "/bars"
+
+    expect(page).to have_content("Sample Bar")
+
+    click_on "Sample Bar"
+    click_on "Delete"
+
+    expect(page).to_not have_content("Sample Bar")
+  end
+end
 
 RSpec.feature "User edits a bar" do
-  feature "can delete a bar" do
-    DatabaseCleaner.start
+  DatabaseCleaner.start
 
-      let(:user_one) { User.create(
-        first_name: "Sam",
-        last_name: "Cole",
-        username: "Sammo",
-        email: "123@gmail.com",
-        password: "password"
-        )
-      }
+    let(:user_one) { User.create(
+      first_name: "Sam",
+      last_name: "Cole",
+      username: "Sammo",
+      email: "123@gmail.com",
+      password: "password"
+      )
+    }
 
-      let(:bar_one) { Bar.create(
-        name: "Happy Bar",
-        address: "123 Abc Street",
-        city: "Boston",
-        state: "MA",
-        zip: "02111",
-        user: user_one
-        )
-      }
+    let(:bar_one) { Bar.create(
+      name: "Happy Bar",
+      address: "123 Abc Street",
+      city: "Boston",
+      state: "MA",
+      zip: "02111",
+      user: user_one
+      )
+    }
 
-      let(:bar) { Bar.create(
-        name: "Sample Bar",
-        address: "1 Main St.",
-        city: "Boston",
-        state: "MA",
-        zip: "02111",
-        user: user_one
-        )
-      }
+  scenario "successful edit" do
+    login_as_user(user_one)
+    bar_one
+    visit bars_path
 
-    scenario "successful delete" do
-      login_as_user(user_one)
-      bar_one
-      visit bars_path
+    click_on "Happy Bar"
 
-      click_on "Happy Bar"
+    expect(page).to have_content "123 Abc Street"
 
-      expect(page).to have_content "123 Abc Street"
+    click_on "Edit"
 
-      click_on "Edit"
+    fill_in "Address", with: "321 ZZZ Street"
 
-      fill_in "Address", with: "321 ZZZ Street"
+    click_on "Submit"
 
-      click_on "Submit"
-
-      expect(page).to_not have_content "123 Abc Street"
-      expect(page).to have_content "321 ZZZ Street"
-    end
-    DatabaseCleaner.clean
-
-    scenario "successfully" do
-      login_as_user(user_one)
-      bar
-      visit "/bars"
-
-      expect(page).to have_content("Sample Bar")
-
-      click_on "Sample Bar"
-      click_on "Delete"
-
-      expect(page).to_not have_content("Sample Bar")
-    end
+    expect(page).to_not have_content "123 Abc Street"
+    expect(page).to have_content "321 ZZZ Street"
   end
+  DatabaseCleaner.clean
 end
