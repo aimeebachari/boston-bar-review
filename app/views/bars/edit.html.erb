@@ -1,0 +1,7 @@
+<h1>Edit <%= @bar.name %> </h1>
+
+<%= notice %>
+
+<%= render 'form' %>
+
+<%= link_to "Delete", @bar, method: :delete, data: {confirm: "Are you sure?"} %>

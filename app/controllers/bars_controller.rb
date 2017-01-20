@@ -33,6 +33,27 @@ class BarsController < ApplicationController
     end
   end
 
+  def edit
+    @bar = Bar.find(params[:id])
+
+    render :edit
+  end
+
+  def update
+    @bar = Bar.find(params[:id])
+
+    if @bar.update(bar_params)
+      redirect_to bar_path
+    else
+      render :edit
+    end
+  end
+
+  def destroy
+    Bar.destroy(params[:id])
+    redirect_to bars_path
+  end
+
   private
 
   def bar_params

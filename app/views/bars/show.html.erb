@@ -1,5 +1,3 @@
-<%= notice %>
-
 <h1> <%= @bar.name %> </h1>
 
 <h3>Rating: <%= @average.to_f.round(2) %> </h3>
@@ -7,6 +5,10 @@
 <div>
   <p> <%= @bar.address %> </p>
   <p> <%= @bar.city %>, <%= @bar.state %>, <%= @bar.zip %> </p>
+</div>
+
+<div>
+  <%= link_to 'Edit Bar', edit_bar_path(@bar) %>
 </div>
 
 <div>

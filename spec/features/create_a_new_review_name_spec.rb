@@ -97,20 +97,15 @@ RSpec.feature 'user can edit reviews' do
     fill_in 'Review', with: 'So cheap and stuff'
     click_on 'Submit Review'
 
-    click_on 'Add Review'
+    expect(page).to have_content('So cheap and stuff')
 
-    choose '3'
-    fill_in 'Review', with: 'So cheap and stuff'
-    click_on 'Submit Review'
+    click_on "Edit"
 
-    expect(page).to have_content('Edit')
+    fill_in "Review", with: 'Only kinda cheap and stuff'
+    click_on "Submit Review"
 
-    page.first(:link, "Edit").click
-    choose '4'
-    click_on 'Submit Review'
-
-
-    expect(page).to have_content('3.5')
+    expect(page).to have_content('Only kinda cheap and stuff')
+    expect(page).to_not have_content('So cheap and stuff')
   end
   DatabaseCleaner.clean
 end
@@ -150,6 +145,7 @@ RSpec.feature 'user can destroy reviews' do
 
     expect(page).to have_content('This will delete')
 
+    click_on 'Edit Bar'
     click_on 'Delete'
 
     expect(page).to_not have_content('This will delete')
