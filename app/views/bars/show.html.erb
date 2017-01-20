@@ -1,11 +1,42 @@
+
+<div class="row container">
+  <div class="columns large-6 small-12">
+
+    <h3>Rating: <%= @average.to_f.round(1) %> </h3>
+
+<br />
+<h1> <%= @bar.name %> </h1>
+
+    <div id="bar-details">
+      <p> <%= @bar.address %> </p>
+      <p> <%= @bar.city %>, <%= @bar.state %>, <%= @bar.zip %> </p>
+    </div>
+
 <h1> <%= @bar.name %> </h1>
 
 <h3>Rating: <%= @average.to_f.round(2) %> </h3>
 
-<div>
-  <p> <%= @bar.address %> </p>
-  <p> <%= @bar.city %>, <%= @bar.state %>, <%= @bar.zip %> </p>
-</div>
+
+    <div id="bar-details">
+      <% unless @bar.url.nil? %>
+        <p> <%= @bar.url %> </p>
+      <% end %>
+    </div>
+
+    <div id="bar-details">
+      <% unless @bar.description.nil? %>
+        <p> <%= @bar.description %> </p>
+      <% end %>
+    </div>
+    <%= link_to "Delete", @bar, method: :delete, data: {confirm: "Are you sure?"} %>
+  </div>
+
+
+  <div class="barlist columns large-6 small-12">
+    <div>
+      <%= image_tag("beer.jpg") %>
+    </div>
+  </div>
 
 <div>
   <%= link_to 'Edit Bar', edit_bar_path(@bar) %>
@@ -15,6 +46,7 @@
   <% unless @bar.url.nil? %>
     <p> <%= @bar.url %> </p>
   <% end %>
+
 </div>
 
 <h3>Reviews:</h3>
