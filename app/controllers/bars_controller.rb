@@ -8,6 +8,15 @@ class BarsController < ApplicationController
   def show
     @user = current_user
     @bar = Bar.find(params[:id])
+
+    rating = 0
+    count = 0
+    @bar.reviews.each do |review|
+      rating += review.rating
+      count += 1
+    end
+
+    @average = rating.to_f / count.to_f
   end
 
   def create

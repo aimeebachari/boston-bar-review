@@ -3,6 +3,8 @@ require "database_cleaner"
 
 DatabaseCleaner.strategy = :truncation
 
+
+
 RSpec.feature "User creates a new bar" do
   DatabaseCleaner.start
 
@@ -99,6 +101,7 @@ feature "can delete a bar" do
     expect(page).to have_content("Sample Bar")
 
     click_on "Sample Bar"
+    click_on "Edit Bar"
     click_on "Delete"
 
     expect(page).to_not have_content("Sample Bar")
@@ -136,7 +139,7 @@ RSpec.feature "User edits a bar" do
 
     expect(page).to have_content "123 Abc Street"
 
-    click_on "Edit"
+    click_on "Edit Bar"
 
     fill_in "Address", with: "321 ZZZ Street"
 

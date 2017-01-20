@@ -3,3 +3,5 @@
 <%= notice %>
 
 <%= render 'form' %>
+
+<%= link_to "Delete", @bar, method: :delete, data: {confirm: "Are you sure?"} %>

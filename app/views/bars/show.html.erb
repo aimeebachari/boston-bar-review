@@ -1,8 +1,6 @@
-<br />
-<%= link_to "Delete", @bar, method: :delete, data: {confirm: "Are you sure?"} %>
 <h1> <%= @bar.name %> </h1>
 
-<h3>Rating: <%= @average.to_f.round(1) %> </h3>
+<h3>Rating: <%= @average.to_f.round(2) %> </h3>
 
 <div>
   <p> <%= @bar.address %> </p>
@@ -10,11 +8,30 @@
 </div>
 
 <div>
-  <%= link_to 'Edit', edit_bar_path(@bar) %>
+  <%= link_to 'Edit Bar', edit_bar_path(@bar) %>
 </div>
 
 <div>
   <% unless @bar.url.nil? %>
     <p> <%= @bar.url %> </p>
   <% end %>
+</div>
+
+<h3>Reviews:</h3>
+
+<div>
+  <% unless @bar.reviews.nil? %>
+    <ul>
+      <% @bar.reviews.each do |review| %>
+        <li> <%= review.rating %> | <%= review.body %> |
+          <%= link_to 'Edit', edit_bar_review_path(@bar, review) %> |
+          <%= link_to 'Delete', bar_review_path(@bar, review), method: :delete, params:{review: review.id}, data: {confirm: "Are you sure?"} %>
+        </li>
+      <% end %>
+    </ul>
+  <% end %>
+</div>
+
+<div>
+  <%= link_to "Add Review", new_bar_review_path(@bar) %>
 </div>
