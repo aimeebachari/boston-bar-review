@@ -29,6 +29,14 @@ body {
   font-weight:normal;
 }
 
+h1 {
+  color: white;
+}
+
+#bar-details {
+  color: white;
+}
+
 #search {
   width: auto;
 }
@@ -43,6 +51,10 @@ body {
   padding-top: 20px;
 }
 
+.sign-up {
+  padding-bottom: 40px;
+}
+
 .bar-form {
   padding-top: 40px;
   padding-bottom: 30px;
@@ -50,6 +62,18 @@ body {
 }
 
 h3 {
+  color: white;
+}
+
+h2 {
+  color: white;
+}
+
+a {
+  font-weight: bold;
+}
+
+.alert {
   color: white;
 }
 
@@ -61,6 +85,10 @@ label {
 i, em {
   color: white;
   font-weight: bold;
+}
+
+input {
+  background-color: white;
 }
 
 #edit-page {
