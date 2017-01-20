@@ -11,8 +11,6 @@ class BarsController < ApplicationController
 
     rating = 0
     count = 0
-    @bar = Bar.find(params[:id])
-
     @bar.reviews.each do |review|
       rating += review.rating
       count += 1

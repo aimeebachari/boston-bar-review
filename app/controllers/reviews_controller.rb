@@ -25,24 +25,26 @@ class ReviewsController < ApplicationController
   end
 
   def edit
-    binding.pry
-    @bar = Bar.find(params[:bar_id])
     @review = Review.find(params[:id])
+    @bar = @review.bar
   end
 
   def update
     @review = Review.find(params[:id])
+    @bar = @review.bar
     if @review.update(review_params)
-      redirect_to bar_path
+      redirect_to @bar
     else
       render :edit
     end
   end
 
   def destroy
+    @review = Review.find(params[:id])
+    @bar = @review.bar
     @review.destroy
 
-    redirect_to bar_path
+    redirect_to @bar
   end
 
   private

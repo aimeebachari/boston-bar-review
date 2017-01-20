@@ -115,13 +115,45 @@ RSpec.feature 'user can edit reviews' do
   DatabaseCleaner.clean
 end
 
-# RSpec.feature 'user can destroy reviews' do
-#   DatabaseCleaner.start
-#
-#   login_as_user(user_one)
-#   visit bar_path(bar_one)
-#
-#
-#
-#   DatabaseCleaner.clean
-# end
+RSpec.feature 'user can destroy reviews' do
+  DatabaseCleaner.start
+
+  let(:user_one) { User.create(
+    first_name: "Sam",
+    last_name: "Cole",
+    username: "Sammo",
+    email: "123@gmail.com",
+    password: "password")
+  }
+
+  let(:bar_one) { Bar.create(
+    name: "JJ's",
+    address: "123 Summer Street",
+    city: "Boston",
+    state: "MA",
+    zip: "02999",
+    url: "www.jjs.com",
+    description: "A great bar downtown!",
+    user: user_one
+    )
+  }
+
+  scenario 'user deletes a review' do
+    login_as_user(user_one)
+    visit bar_path(bar_one)
+
+    click_on 'Add Review'
+
+    choose '5'
+    fill_in 'Review', with: 'This will delete'
+    click_on 'Submit Review'
+
+    expect(page).to have_content('This will delete')
+
+    click_on 'Delete'
+
+    expect(page).to_not have_content('This will delete')
+
+  end
+  DatabaseCleaner.clean
+end

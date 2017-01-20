@@ -22,8 +22,8 @@
     <ul>
       <% @bar.reviews.each do |review| %>
         <li> <%= review.rating %> | <%= review.body %> |
-          <%= link_to 'Edit', edit_bar_review_path(review) %> |
-        
+          <%= link_to 'Edit', edit_bar_review_path(@bar, review) %> |
+          <%= link_to 'Delete', bar_review_path(@bar, review), method: :delete, params:{review: review.id}, data: {confirm: "Are you sure?"} %>
         </li>
       <% end %>
     </ul>
