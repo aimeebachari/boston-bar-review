@@ -106,6 +106,7 @@ feature "can delete a bar" do
 
     expect(page).to_not have_content("Sample Bar")
   end
+  DatabaseCleaner.clean
 end
 
 RSpec.feature "User edits a bar" do
@@ -117,6 +118,15 @@ RSpec.feature "User edits a bar" do
       username: "Sammo",
       email: "123@gmail.com",
       password: "password"
+      )
+    }
+
+    let(:user_two) { User.create(
+      first_name: "Sterling",
+      last_name: "Archer",
+      username: "Dutchess",
+      email: "archer@gmail.com",
+      password: "things"
       )
     }
 
@@ -147,6 +157,24 @@ RSpec.feature "User edits a bar" do
 
     expect(page).to_not have_content "123 Abc Street"
     expect(page).to have_content "321 ZZZ Street"
+  end
+
+  scenario "no option to edit if they did not create" do
+    login_as_user(user_two)
+    bar_one
+    visit bars_path
+
+    click_on "Happy Bar"
+
+    expect(page).to_not have_content "Edit Bar"
+  end
+
+  scenario "get kicked back if they manually enter URL" do
+    login_as_user(user_two)
+    bar_one
+    visit '/bars/5/edit'
+
+    expect(page).to have_content("You don't have permission to edit this bar!")
   end
   DatabaseCleaner.clean
 end
