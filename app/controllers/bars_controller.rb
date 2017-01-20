@@ -39,6 +39,9 @@ class BarsController < ApplicationController
       render :edit
     end
 
+  def destroy
+    Bar.destroy(params[:id])
+    redirect_to bars_path
   end
 
   private

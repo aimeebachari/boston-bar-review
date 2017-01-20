@@ -52,6 +52,7 @@ RSpec.feature "User creates a new bar" do
   end
 
   scenario "failed bar creation" do
+    login_as_user(user_one)
     visit bars_path
     expect(page).to have_content "New Bar Form"
 
@@ -68,6 +69,7 @@ RSpec.feature "User creates a new bar" do
   DatabaseCleaner.clean
 end
 
+
 RSpec.feature "User edits a bar" do
   DatabaseCleaner.start
 
@@ -81,10 +83,27 @@ RSpec.feature "User edits a bar" do
   let(:bar) { Bar.create(
     name: "Happy Bar",
     address: "123 Abc Street",
+
+feature "can delete a bar" do
+  DatabaseCleaner.start
+
+  let(:user_one) { User.create(
+    first_name: "Sam",
+    last_name: "Cole",
+    username: "Sammo",
+    email: "123@gmail.com",
+    password: "password"
+  )}
+
+  let(:bar) { Bar.create(
+    name: "Sample Bar",
+    address: "1 Main St.",
+
     city: "Boston",
     state: "MA",
     zip: "02111",
     user: user_one
+
     )
   }
 
@@ -107,4 +126,19 @@ RSpec.feature "User edits a bar" do
     expect(page).to have_content "321 ZZZ Street"
   end
   DatabaseCleaner.clean
+
+  )}
+
+  scenario "successfully" do
+    login_as_user(user_one)
+    bar
+    visit "/bars"
+    
+    expect(page).to have_content("Sample Bar")
+
+    click_on "Sample Bar"
+    click_on "Delete"
+
+    expect(page).to_not have_content("Sample Bar")
+  end
 end
