@@ -27,6 +27,12 @@ class ReviewsController < ApplicationController
   def edit
     @review = Review.find(params[:id])
     @bar = @review.bar
+    @user = current_user
+
+    if @user.id != @review.user_id
+      flash[:notice] = "You don't have permission to edit this review!"
+      redirect_to @bar
+    end
   end
 
   def update
@@ -42,9 +48,16 @@ class ReviewsController < ApplicationController
   def destroy
     @review = Review.find(params[:id])
     @bar = @review.bar
-    @review.destroy
 
-    redirect_to @bar
+    @user = current_user
+
+    if @user.id != @review.user_id
+      flash[:notice] = "You don't have permission to delete this review!"
+      redirect_to @bar
+    else
+      @review.destroy
+      redirect_to @bar
+    end
   end
 
   private

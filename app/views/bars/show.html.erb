@@ -12,23 +12,11 @@
       <p> <%= @bar.city %>, <%= @bar.state %>, <%= @bar.zip %> </p>
     </div>
 
-<h1> <%= @bar.name %> </h1>
-
-<h3>Rating: <%= @average.to_f.round(2) %> </h3>
-
-
-    <div id="bar-details">
-      <% unless @bar.url.nil? %>
-        <p> <%= @bar.url %> </p>
-      <% end %>
-    </div>
-
     <div id="bar-details">
       <% unless @bar.description.nil? %>
         <p> <%= @bar.description %> </p>
       <% end %>
     </div>
-    <%= link_to "Delete", @bar, method: :delete, data: {confirm: "Are you sure?"} %>
   </div>
 
 
@@ -38,9 +26,12 @@
     </div>
   </div>
 
-<div>
-  <%= link_to 'Edit Bar', edit_bar_path(@bar) %>
-</div>
+<% if @user.id == @bar.user_id %>
+  <div>
+    <%= link_to 'Edit Bar', edit_bar_path(@bar) %>
+  </div>
+<% end %>
+
 
 <div>
   <% unless @bar.url.nil? %>
@@ -55,10 +46,14 @@
   <% unless @bar.reviews.nil? %>
     <ul>
       <% @bar.reviews.each do |review| %>
-        <li> <%= review.rating %> | <%= review.body %> |
-          <%= link_to 'Edit', edit_bar_review_path(@bar, review) %> |
-          <%= link_to 'Delete', bar_review_path(@bar, review), method: :delete, params:{review: review.id}, data: {confirm: "Are you sure?"} %>
-        </li>
+        <% if @user.id == review.user_id %>
+          <li> <%= review.rating %> | <%= review.body %> |
+            <%= link_to 'Edit', edit_bar_review_path(@bar, review) %> |
+            <%= link_to 'Delete', bar_review_path(@bar, review), method: :delete, params:{review: review.id}, data: {confirm: "Are you sure?"} %>
+          </li>
+        <% else %>
+          <li> <%= review.rating %> | <%= review.body %> </li>
+        <% end %>
       <% end %>
     </ul>
   <% end %>
