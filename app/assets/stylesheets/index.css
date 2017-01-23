@@ -111,8 +111,3 @@ body {
 .top-bar {
   background-color: transparent;
 }
-
-#term {
-  display: flex;
-  justify-content: center;
-}

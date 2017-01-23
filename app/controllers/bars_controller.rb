@@ -3,9 +3,6 @@ class BarsController < ApplicationController
   def index
     if params[:term]
       @bars = Bar.search(params[:term])
-      if @bars.empty?
-        flash[:notice] = "No bars matched your search!"
-      end
     else
       @bars = Bar.all
     end

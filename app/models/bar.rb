@@ -11,7 +11,7 @@ class Bar < ApplicationRecord
 
   def self.search(term)
     if term
-      where('name LIKE ?', "%#{term}%")
+      where('LOWER (name) LIKE ?', "%#{term.downcase}%")
     else
       all
     end

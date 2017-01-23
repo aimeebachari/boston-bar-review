@@ -16,9 +16,9 @@
     </div>
 
       <div class="top-bar-right">
-        <%= form_tag(bars_path, method: :get) do %>
-          <%= text_field_tag :term, params[:term], placeholder: "Search" %>
-          <%= submit_tag 'Search', name: nil %>
+        <%= form_tag(bars_path, method: :get, id: "search-form") do %>
+          <%= text_field_tag :term, params[:term], placeholder: "Search", id: "search-field" %>
+          <%= submit_tag 'Search', name: nil, id: "search-button" %>
         <% end %>
       </div>
     </div>
