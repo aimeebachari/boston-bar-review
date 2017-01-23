@@ -17,6 +17,8 @@ gem 'jbuilder', '~> 2.5'
 gem 'foundation-rails'
 gem 'devise'
 gem 'carrierwave', '~> 1.0'
+gem 'fog'
+
 
 group :development, :test do
   gem 'pry-rails'
@@ -26,6 +28,7 @@ group :development, :test do
   gem 'factory_girl'
   gem 'valid_attribute'
   gem 'shoulda-matchers', require: false
+  gem 'dotenv-rails'
 end
 
 group :development do

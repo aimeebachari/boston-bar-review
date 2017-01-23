@@ -1,4 +1,7 @@
 require 'rails_helper'
+require "database_cleaner"
+
+DatabaseCleaner.strategy = :truncation
 
 feature "user uploads image" do
   let (:user) { User.create(
