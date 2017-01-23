@@ -8,4 +8,12 @@ class Bar < ApplicationRecord
   validates :state, presence: true
   validates :zip, presence: true, numericality: true, length: { is: 5 }
   validates :description, length: { maximum: 300 }
+
+  def self.search(term)
+    if term
+      where('name LIKE ?', "%#{term}%")
+    else
+      all
+    end
+  end
 end

@@ -1,7 +1,14 @@
 class BarsController < ApplicationController
 
   def index
-    @bars = Bar.all
+    if params[:term]
+      @bars = Bar.search(params[:term])
+      if @bars.empty?
+        flash[:notice] = "No bars matched your search!"
+      end
+    else
+      @bars = Bar.all
+    end
     @bar = Bar.new
   end
 
@@ -71,7 +78,7 @@ class BarsController < ApplicationController
   private
 
   def bar_params
-    params.require(:bar).permit(:name, :address, :city, :state, :zip, :url, :description)
+    params.require(:bar).permit(:name, :address, :city, :state, :zip, :url, :description, :term)
   end
 
 end
