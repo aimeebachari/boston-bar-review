@@ -62,14 +62,17 @@ class Vote extends Component {
     }
   }
   render(){
+    let sum = this.state.sum;
     let handleUpVoteClick = () => {this.handleUpVoteClick();};
     let handleDownVoteClick = () => {this.handleDownVoteClick();};
     return(
       <div>
         <button className = "upVote" onClick = {handleUpVoteClick}>Up</button>
         <button className = "downVote" onClick = {handleDownVoteClick}>Down</button>
+        {sum}
       </div>
     )
+
   }
 }
 
