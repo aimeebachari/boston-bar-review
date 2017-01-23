@@ -35,6 +35,13 @@ feature "Admin permissions" do
     )
   }
 
+  let(:review_one) {Review.create(
+    body: "This is a review",
+    rating: "5",
+    user: user_two,
+    bar: bar_one,
+    )}
+
   DatabaseCleaner.start
 
   scenario "admin can view a list of users" do
@@ -65,14 +72,34 @@ feature "Admin permissions" do
   end
 
   scenario "admin can delete any bar" do
-    login_as_user(user_one)
     bar_one
+    login_as_user(user_one)
 
+    expect(page).to have_content("JJ's")
 
+    click_on("JJ's")
+
+    expect(page).to have_content("Edit Bar")
+
+    click_on("Edit Bar")
+    click_on("Delete")
+
+    expect(page).to_not have_content("JJ's")
   end
 
   scenario "admin can delete any review" do
+    bar_one
+    review_one
+    login_as_user(user_two)
+    click_on("JJ's")
 
+    expect(page).to have_content("This is a review")
+
+    expect(page).to have_content("Delete")
+    
+    click_on("Delete")
+
+    expect(page).to_not have_content("This is a review")
   end
 
   # xscenario "admin can change admin status of users" do
