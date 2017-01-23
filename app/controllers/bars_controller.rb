@@ -37,7 +37,7 @@ class BarsController < ApplicationController
   def edit
     @bar = Bar.find(params[:id])
     @user = current_user
-    if @user.id == @bar.user_id
+    if @user.id == @bar.user_id || @user.admin?
       render :edit
     else
       flash[:notice] = "You don't have permission to edit this bar!"
@@ -59,7 +59,7 @@ class BarsController < ApplicationController
     @bar = Bar.find(params[:id])
     @user = current_user
 
-    if @user.id == @bar.user_id
+    if @user.id == @bar.user_id || @user.admin?
       Bar.destroy(params[:id])
       redirect_to bars_path
     else
