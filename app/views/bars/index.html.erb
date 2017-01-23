@@ -2,11 +2,14 @@
 <div class="row container">
   <div class="barlist columns large-6 small-12">
     <h3>Get Your Drink On 🍻</h3>
-      <% @bars.each do |bar| %>
-        <p id="bars-index">
-          <%= link_to bar.name, bar %>
-        </p>
-      <% end %>
+    <% if @bars.empty? %>
+      <p>No Bars!</p>
+    <% end %>
+    <% @bars.each do |bar| %>
+      <p id="bars-index">
+        <%= link_to bar.name, bar %>
+      </p>
+    <% end %>
   </div>
 
 
