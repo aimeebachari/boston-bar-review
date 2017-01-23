@@ -172,7 +172,8 @@ RSpec.feature "User edits a bar" do
   scenario "get kicked back if they manually enter URL" do
     login_as_user(user_two)
     bar_one
-    visit '/bars/5/edit'
+
+    visit "/bars/#{bar_one.id}/edit"
 
     expect(page).to have_content("You don't have permission to edit this bar!")
   end

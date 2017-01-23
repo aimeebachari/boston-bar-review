@@ -94,6 +94,13 @@ RSpec.feature 'user can edit reviews' do
     user: user_one
   )}
 
+  let(:review_one) {Review.create(
+    body: "This is a review",
+    rating: "5",
+    user: user_one,
+    bar: bar_one,
+    )}
+
   scenario 'successfully' do
     login_as_user(user_one)
     visit bar_path(bar_one)
@@ -133,18 +140,12 @@ RSpec.feature 'user can edit reviews' do
   end
 
   scenario "get kicked back if they manually enter URL and didn't create" do
-    login_as_user(user_one)
-    visit bar_path(bar_one)
-    click_on 'Add Review'
 
-    choose '5'
-    fill_in 'Review', with: 'So cheap and stuff'
-    click_on 'Submit Review'
 
-    click_on 'Logout'
+
 
     login_as_user(user_two)
-    visit '/bars/11/reviews/5/edit'
+    visit "/bars/#{bar_one.id}/reviews/#{review_one.id}/edit"
 
     expect(page).to have_content("You don't have permission to edit this review!")
   end

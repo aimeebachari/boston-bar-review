@@ -29,7 +29,9 @@ class ReviewsController < ApplicationController
     @bar = @review.bar
     @user = current_user
 
-    if @user.id != @review.user_id
+    if @user.id == @review.user_id || @user.admin?
+      render :edit
+    else
       flash[:notice] = "You don't have permission to edit this review!"
       redirect_to @bar
     end
@@ -48,14 +50,13 @@ class ReviewsController < ApplicationController
   def destroy
     @review = Review.find(params[:id])
     @bar = @review.bar
-
     @user = current_user
 
-    if @user.id != @review.user_id
-      flash[:notice] = "You don't have permission to delete this review!"
+    if @user.id == @review.user_id || @user.admin?
+      @review.destroy
       redirect_to @bar
     else
-      @review.destroy
+      flash[:notice] = "You don't have permission to delete this review!"
       redirect_to @bar
     end
   end

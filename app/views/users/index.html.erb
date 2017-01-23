@@ -1,0 +1,11 @@
+<h4>Users</h4>
+
+<ul>
+  <% @users.each do |user| %>
+    <li>
+      <%= user.first_name %> <%= user.last_name %> |
+      Admin Status: <%= user.admin %> |
+      <%= link_to "Delete", admin_destroy_user_path(user), method: :delete, data: { confirm: " Are you sure?" }, id: "#{user.id}" %>
+    </li>
+  <% end %>
+</ul>
