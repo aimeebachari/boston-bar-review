@@ -23,6 +23,20 @@ feature "Admin permissions" do
     )
   }
 
+  let(:bar_one) { Bar.create(
+    name: "JJ's",
+    address: "123 Summer Street",
+    city: "Boston",
+    state: "MA",
+    zip: "02999",
+    url: "www.jjs.com",
+    description: "A great bar downtown!",
+    user: user_two
+    )
+  }
+
+  DatabaseCleaner.start
+
   scenario "admin can view a list of users" do
     login_as_user(user_one)
     user_two
@@ -43,15 +57,26 @@ feature "Admin permissions" do
     expect(page).to_not have_content("Sonic The Hedgehog")
   end
 
-  xscenario "admin can change admin status of users" do
+  scenario "non-admin's can't access the users page" do
+    login_as_user(user_two)
+    visit "/users"
 
+    expect(page).to have_content("You don't have permission to access this page!")
   end
 
   scenario "admin can delete any bar" do
+    login_as_user(user_one)
+    bar_one
+
 
   end
 
   scenario "admin can delete any review" do
 
   end
+
+  # xscenario "admin can change admin status of users" do
+  #
+  # end
+  DatabaseCleaner.clean
 end

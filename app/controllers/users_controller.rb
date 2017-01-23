@@ -1,5 +1,9 @@
 class UsersController < ApplicationController
   def index
+    if !current_user.admin?
+      flash[:notice] = "You don't have permission to access this page!"
+      redirect_to bars_path
+    end
     @users = User.all
   end
 

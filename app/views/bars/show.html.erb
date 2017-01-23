@@ -26,7 +26,7 @@
     </div>
   </div>
 
-<% if @user.id == @bar.user_id %>
+<% if @user.id == @bar.user_id || @user.admin? %>
   <div>
     <%= link_to 'Edit Bar', edit_bar_path(@bar) %>
   </div>
@@ -46,7 +46,7 @@
   <% unless @bar.reviews.nil? %>
     <ul>
       <% @bar.reviews.each do |review| %>
-        <% if @user.id == review.user_id %>
+        <% if @user.id == review.user_id || @user.admin? %>
           <li> <%= review.rating %> | <%= review.body %> |
             <%= link_to 'Edit', edit_bar_review_path(@bar, review) %> |
             <%= link_to 'Delete', bar_review_path(@bar, review), method: :delete, params:{review: review.id}, data: {confirm: "Are you sure?"} %>
