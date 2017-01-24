@@ -81,7 +81,7 @@ class Vote extends Component {
       let newResponse = response.json()
       return newResponse;
     }).then(response => {this.setState({
-      downSum: this.state.upSum +1
+      upSum: this.state.upSum +1
     })
     })
 
