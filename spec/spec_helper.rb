@@ -11,6 +11,10 @@ RSpec.configure do |config|
     click_on "Log in"
   end
 
+  config.before :each do
+    ActionMailer::Base.deliveries.clear
+  end
+
   config.before(:suite) do
     DatabaseCleaner.strategy = :transaction
     DatabaseCleaner.clean_with(:truncation)
