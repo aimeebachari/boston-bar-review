@@ -3,10 +3,6 @@
 
     <h2>Edit <%= @bar.name %> </h2>
 
-    <div id="errors">
-     <%= notice %> 
-    </div> <br />
-
     <%= render 'form' %><br />
 
     <%= link_to "Delete", @bar, method: :delete, data: {confirm: "Are you sure?"} %>

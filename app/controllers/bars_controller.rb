@@ -33,7 +33,7 @@ class BarsController < ApplicationController
       redirect_to @bar
     else
       @bars = Bar.all
-      flash[:notice] = @bar.errors.full_messages.to_sentence
+      flash.now[:notice] = @bar.errors.full_messages.to_sentence
       render :index
     end
   end

@@ -9,6 +9,14 @@ body {
   padding-top: 60px;
 }
 
+#error_explanation li {
+  color: red;
+}
+
+#error_explanation {
+  color: red;
+}
+
 #cancel-button {
   padding-top: 60px;
 }
@@ -22,6 +30,10 @@ body {
   font-family: inherit;
   font-weight: bold;
   font-size: 40px;
+}
+
+#error {
+  color: red;
 }
 
 #notice {
