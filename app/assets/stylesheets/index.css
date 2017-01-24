@@ -2,14 +2,27 @@ body {
   padding-top: 20px;
   padding-left: 50px;
   padding-right: 50px;
+  padding-bottom: 50px;
 }
 
 #default-image {
   padding-top: 60px;
 }
 
+#error_explanation li {
+  color: red;
+}
+
+#error_explanation {
+  color: red;
+}
+
 #cancel-button {
   padding-top: 60px;
+}
+
+#new-review {
+  padding-top: 20px;
 }
 
 .active {
@@ -17,6 +30,19 @@ body {
   font-family: inherit;
   font-weight: bold;
   font-size: 40px;
+}
+
+#error {
+  color: red;
+}
+
+#notice {
+  color: red;
+  padding-top: 20px;
+}
+
+li {
+  color: white;
 }
 
 .top-bar-left {
@@ -47,6 +73,10 @@ h1 {
   font-size: 25px;
 }
 
+#errors {
+  color: red;
+}
+
 #bars-index {
   padding-top: 20px;
 }
@@ -67,6 +97,10 @@ h3 {
 
 h2 {
   color: white;
+}
+
+.active {
+  font-size: 50px;
 }
 
 a {

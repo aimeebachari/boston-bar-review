@@ -2,7 +2,11 @@
 <div class="row container">
   <div class="columns large-6 small-12">
 
-    <h3>Rating: <%= @average.to_f.round(1) %> </h3>
+    <% if @average.to_f.round(1).nan? %>
+      <h3>Not Yet Rated </h3>
+    <% else %>
+      <h3>Rating: <%= @average.to_f.round(1) %> </h3>
+    <% end %>
 
 <br />
 <h1> <%= @bar.name %> </h1>

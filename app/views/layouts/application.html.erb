@@ -15,13 +15,15 @@
       </div>
     </div>
 
-      <div class="top-bar-right">
-        <%= form_tag(bars_path, method: :get, id: "search-form") do %>
-          <%= text_field_tag :term, params[:term], placeholder: "Search", id: "search-field" %>
-          <%= submit_tag 'Search', name: nil, id: "search-button" %>
-        <% end %>
-      </div>
+    <div class="top-bar-right">
+      <form id="search-form" action="/bars" accept-charset="UTF-8" method="get">
+        <ul class="menu">
+          <li><input type="text" name="term" id="search-field" placeholder="Search"></li>
+          <li><button type="submit" class="button" value="Search" id="search-button" data-disable-with="Search">Search</button></li>
+        </ul>
+      </form>
     </div>
+  </div>
 
     <div id="user-email">
       <% if user_signed_in? %>
@@ -35,12 +37,16 @@
     </div>
 
   <body>
-    <% if notice %>
-    <p class="alert alert-success"><%= notice %></p>
-    <% end %>
-    <% if alert %>
-    <p class="alert alert-danger"><%= alert %></p>
-    <% end %>
+    <div class="row container">
+      <div class="columns large-6 small-12">
+        <% if notice %>
+         <p class="alert alert-success" id="error"><%= notice %></p>
+         <% end %>
+         <% if alert %>
+         <p class="alert alert-danger"><%= alert %></p>
+         <% end %>
+       </div>
+     </div>
     <%= yield %>
   </body>
 </html>
