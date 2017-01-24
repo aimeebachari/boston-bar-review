@@ -24,6 +24,11 @@ body {
   font-size: 40px;
 }
 
+#notice {
+  color: red;
+  padding-top: 20px;
+}
+
 li {
   color: white;
 }
@@ -56,6 +61,10 @@ h1 {
   font-size: 25px;
 }
 
+#errors {
+  color: red;
+}
+
 #bars-index {
   padding-top: 20px;
 }
@@ -76,6 +85,10 @@ h3 {
 
 h2 {
   color: white;
+}
+
+.active {
+  font-size: 50px;
 }
 
 a {

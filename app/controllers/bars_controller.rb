@@ -55,6 +55,7 @@ class BarsController < ApplicationController
     if @bar.update(bar_params)
       redirect_to bar_path
     else
+      flash[:notice] = @bar.errors.full_messages.to_sentence
       render :edit
     end
   end

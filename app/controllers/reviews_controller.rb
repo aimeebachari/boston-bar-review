@@ -43,6 +43,7 @@ class ReviewsController < ApplicationController
     if @review.update(review_params)
       redirect_to @bar
     else
+      flash[:notice] = @review.errors.full_messages.to_sentence
       render :edit
     end
   end
