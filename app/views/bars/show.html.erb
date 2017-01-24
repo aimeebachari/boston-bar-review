@@ -19,20 +19,21 @@
 
 <h3>Reviews:</h3>
 
-<div>
-  <% unless @bar.reviews.nil? %>
-    <ul>
-      <% @bar.reviews.each do |review| %>
-        <li> <%= review.rating %> | <%= review.body %> |
-          <%= link_to 'Edit', edit_bar_review_path(@bar, review) %> |
-          <%= link_to 'Delete', bar_review_path(@bar, review), method: :delete, params:{review: review.id}, data: {confirm: "Are you sure?"} %>
-        </li>
-        <div id="app">
-        </div>
-      <% end %>
-    </ul>
-  <% end %>
-</div>
+<body>
+  <div>
+    <% unless @bar.reviews.nil? %>
+      <ul>
+        <% @bar.reviews.each do |review| %>
+        <div id="App">  </div>
+          <li> <%= review.rating %> | <%= review.body %> |
+            <%= link_to 'Edit', edit_bar_review_path(@bar, review) %> |
+            <%= link_to 'Delete', bar_review_path(@bar, review), method: :delete, params:{review: review.id}, data: {confirm: "Are you sure?"} %>
+          </li>
+        <% end %>
+      </ul>
+    <% end %>
+  </div>
+</body>
 
 <div>
   <%= link_to "Add Review", new_bar_review_path(@bar) %>

@@ -6,7 +6,8 @@ class Vote extends Component {
     this.state = {
       upVote: false,
       downVote: false,
-      sum: 0,
+      upSum: 0,
+      downSum: 0
     }
     this.handleUpVoteClick = this.handleUpVoteClick.bind(this);
     this.handleDownVoteClick = this.handleDownVoteClick.bind(this);
@@ -14,62 +15,70 @@ class Vote extends Component {
 
   handleUpVoteClick(){
     if (!this.state.upVote && !this.state.downVote) {
-      let newSum = this.state.sum + 1;
+      let newUpSum = this.state.upSum + 1;
       this.setState({
         upVote: true,
-        sum: newSum
+        upSum: newUpSum
       })
     }
     else if (!this.state.upVote && this.state.downVote) {
-      let newSum = this.state.sum + 2;
+      let newUpSum = this.state.upSum + 1;
+      let newDownSum = this.state.downSum - 1;
       this.setState({
         upVote: true,
         downVote: false,
-        sum: newSum
+        upSum: newUpSum,
+        downSum: newDownSum
+
       })
     }
     else if (this.state.upVote && !this.state.downVote) {
-      let newSum = this.state.sum - 1;
+      let newUpSum = this.state.upSum - 1;
       this.setState({
         upVote: false,
-        sum: newSum
+        upSum: newUpSum
       })
     }
   }
 
   handleDownVoteClick(){
     if (!this.state.downVote && !this.state.upVote) {
-      let newSum = this.state.sum - 1;
+      let newDownSum = this.state.downsum + 1;
       this.setState({
         downVote: true,
-        sum: newSum
+        sum: newDownSum
       })
     }
     else if (!this.state.downVote && this.state.upVote) {
-      let newSum = this.state.sum - 2;
+      let newDownSum = this.state.downSum + 1;
+      let newUpSum = this.state.upSum - 1;
       this.setState({
         downVote: true,
         upVote: false,
-        sum: newSum
+        downSum: newDownSum,
+        upSum: newUpSum
+
       })
     }
     else if (this.state.downVote && !this.state.upVote) {
-      let newSum = this.state.sum + 1;
+      let newDownSum = this.state.downSum - 1;
       this.setState({
         downVote: false,
-        sum: newSum
+        downSumsum: newDownSum
       });
     }
   }
   render(){
-    let sum = this.state.sum;
+    let upSum = this.state.upSum;
+    let downSum = this.state.downSum;
     let handleUpVoteClick = () => {this.handleUpVoteClick();};
     let handleDownVoteClick = () => {this.handleDownVoteClick();};
     return(
       <div>
         <button className = "upVote" onClick = {handleUpVoteClick}>Up</button>
         <button className = "downVote" onClick = {handleDownVoteClick}>Down</button>
-        {sum}
+        {upSum}
+        {downSum}
       </div>
     )
 
