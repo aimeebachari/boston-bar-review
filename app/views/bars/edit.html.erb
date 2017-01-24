@@ -1,7 +1,12 @@
-<h1>Edit <%= @bar.name %> </h1>
+<div class="row container">
+  <div class="edit-bar columns large-6 small-12">
 
-<%= notice %>
+    <h2>Edit <%= @bar.name %> </h2>
 
-<%= render 'form' %>
+    <%= notice %>
 
-<%= link_to "Delete", @bar, method: :delete, data: {confirm: "Are you sure?"} %>
+    <%= render 'form' %>
+
+    <%= link_to "Delete", @bar, method: :delete, data: {confirm: "Are you sure?"} %>
+  </div>
+</div>

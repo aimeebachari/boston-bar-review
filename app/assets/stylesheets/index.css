@@ -2,6 +2,7 @@ body {
   padding-top: 20px;
   padding-left: 50px;
   padding-right: 50px;
+  padding-bottom: 50px;
 }
 
 #default-image {
@@ -12,11 +13,19 @@ body {
   padding-top: 60px;
 }
 
+#new-review {
+  padding-top: 20px;
+}
+
 .active {
   text-decoration-color: #3B8183;
   font-family: inherit;
   font-weight: bold;
   font-size: 40px;
+}
+
+li {
+  color: white;
 }
 
 .top-bar-left {
