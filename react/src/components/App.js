@@ -15,33 +15,9 @@ class App extends Component {
     this.handleSubmit = this.handleSubmit.bind(this)
     this.handleEditChange = this.handleEditChange.bind(this)
     this.handleDelete = this.handleDelete.bind(this)
-    this.handleUpVote = this.handleUpVote.bind(this)
-    this.handleDownVote = this.handleDownVote.bind(this)
   }
 
-  handleDownVote(reviewId){
-    let fetchBody = {id: reviewId, type: "down_votes"}
-    let newReviews = []
-    fetch(`/api/v1/reviews/${reviewId}`,
-    { method: "PATCH",
-      body: JSON.stringify(fetchBody)
-    }).then(function(response){
-      newReviews = response.json()
-      return newReviews
-    }).then((response) => this.setState({reviews: response}))
-  }
 
-  handleUpVote(reviewId){
-    let fetchBody = {id: reviewId, type: "up_votes"}
-    let newReviews = []
-    fetch(`/api/v1/reviews/${reviewId}`,
-    { method: "PATCH",
-      body: JSON.stringify(fetchBody)
-    }).then(function(response){
-      newReviews = response.json()
-      return newReviews
-    }).then((response) => this.setState({reviews: response}))
-  }
 
   handleDelete(reviewId){
     let fetchBody = { id: reviewId }
@@ -72,8 +48,8 @@ class App extends Component {
       method: "POST",
       body: JSON.stringify(fetchBody)
     }).then(function(response){
-      newReviews = response.json()
-      return newReviews
+      response = response.json()
+      return response
     }).then((response) => this.setState({
       reviews: response,
     }))
@@ -84,7 +60,7 @@ class App extends Component {
     let barId = url[url.length - 1];
     $.ajax({
       method: "GET",
-      url: `${barId}/api/v1/reviews`,
+      url: `/api/v1/bars/${barId}/reviews`,
     })
     .done(data => {
       this.setState({

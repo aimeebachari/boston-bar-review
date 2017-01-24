@@ -8,6 +8,7 @@ class BarsController < ApplicationController
   def show
     @user = current_user
     @bar = Bar.find(params[:id])
+    @reviews = @bar.reviews
 
     rating = 0
     count = 0

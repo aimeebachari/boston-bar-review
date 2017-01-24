@@ -8,9 +8,9 @@ Rails.application.routes.draw do
   end
 
   root "bars#index"
-  resources :bars do
-    namespace :api do
-      namespace :v1 do
+  namespace :api do
+    namespace :v1 do
+      resources :bars do
         resources :reviews
       end
     end
