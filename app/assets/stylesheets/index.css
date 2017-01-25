@@ -3,6 +3,7 @@ body {
   padding-left: 50px;
   padding-right: 50px;
   padding-bottom: 50px;
+  background-image: url(' <%= asset_path("boston-404526.jpg") %>');
 }
 
 #default-image {
@@ -132,10 +133,6 @@ input {
 
 #edit-form {
   padding-bottom: 30px;
-}
-
-body {
-  background-image: url(boston-404526.jpg)
 }
 
 #field-names {
