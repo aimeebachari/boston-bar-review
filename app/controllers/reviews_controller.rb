@@ -8,7 +8,7 @@ class ReviewsController < ApplicationController
     end
   end
 
-  
+
   def new
     @bar = Bar.find(params[:bar_id])
     @review = Review.new

@@ -6,7 +6,7 @@ import App from './components/App';
 $(function() {
   if (document.getElementById('App')){
     ReactDOM.render(
-      <ReviewList />,
+      <App />,
       document.getElementById('App')
     );
   }
