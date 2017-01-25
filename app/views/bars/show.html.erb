@@ -21,8 +21,8 @@
 
 <body>
   <div>
-    <% unless @bar.reviews.nil? %>
-      <ul>
+    <!-- <% unless @bar.reviews.nil? %> -->
+      <!-- <ul>
         <% @reviews.each do |review| %>
           <li> <%= review.rating %> | <%= review.body %> |
             <%= link_to 'Edit', edit_bar_review_path(@bar, review) %> |
@@ -32,8 +32,8 @@
 
         <% end %>
       </ul>
-    <% end %>
-    <div id="App"></div>
+    <% end %> -->
+    <div id="ReviewList"></div>
 
   </div>
 </body>

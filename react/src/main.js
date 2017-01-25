@@ -1,13 +1,13 @@
 import 'babel-polyfill';
 import React from 'react';
 import ReactDOM from 'react-dom';
-import App from './components/App';
+import ReviewList from './components/ReviewList';
 
 $(function() {
-  if (document.getElementById('App')){
+  if (document.getElementById('ReviewList')){
     ReactDOM.render(
       <ReviewList />,
-      document.getElementById('App')
+      document.getElementById('ReviewList')
     );
   }
 });

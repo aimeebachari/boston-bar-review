@@ -21,7 +21,7 @@ class Review extends Component {
       upvote = <button className="upVote" onClick={this.props.handleUpvote}>Up</button>
       downvote = <button className="downVote" onClick={this.props.handleDownvote}>Down</button>
     }
-
+    
     if (this.props.currentUser === this.props.userId) {
       edit =<div className="button">
               <a href={`/bars/${this.props.barId}/review/${this.props.id}/edit`}>Edit</a>
@@ -31,7 +31,6 @@ class Review extends Component {
 
     return(
       <div>
-        <p>{this.props.user.username}</p>
         {body}
         <div>
           {this.props.votes}

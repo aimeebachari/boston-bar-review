@@ -29,5 +29,6 @@ class VotesController < ApplicationController
     else @vote = current_user.votes.create(value: new_value, review: @review)
       @vote.save
     end
+    @review.update_score!
   end
 end

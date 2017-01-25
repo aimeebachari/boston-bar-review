@@ -1,4 +1,5 @@
 import React, {Component} from 'react';
+import Review from './Review';
 
 class ReviewList extends Component {
   constructor(props) {
@@ -34,7 +35,7 @@ class ReviewList extends Component {
         }
       })
       .then(response => {
-        fetch(`/api/v1/bars/${this.state.barId}.json`)
+        fetch(`/api/v1/bars/${this.state.barId}`)
           .then(response => {
             if (response.ok) {
               return response;
@@ -71,7 +72,7 @@ class ReviewList extends Component {
       }
     })
     .then(response => {
-      fetch(`/api/v1/bars/${this.state.barId}.json`)
+      fetch(`/api/v1/bars/${this.state.barId}`)
         .then(response => {
           if (response.ok) {
             return response;
@@ -95,8 +96,11 @@ class ReviewList extends Component {
     }
 
     componentDidMount() {
-      let newBarId = parseInt($('.item-title').first().attr("id"));
-      fetch(`/api/v1/bars/${newBarId}.json`, {
+      let newReviewId = parseInt($('.item-title').first().attr("id"));
+      let url = window.location.href.split("/");
+      let newBarId = url[url.length - 1];
+
+      fetch(`/api/v1/bars/${newBarId}`, {
         credentials: 'same-origin'
       })
       .then(response => {
@@ -113,7 +117,8 @@ class ReviewList extends Component {
         let newCurrentUser = body.currentUser
         let newReviews = body.reviews
         let newUsers = body.users
-        this.setState( {
+        debugger
+        this.setState({
           currentUser: newCurrentUser,
           reviews: newReviews,
           users: newUsers,
@@ -124,37 +129,42 @@ class ReviewList extends Component {
 
     render() {
       let counter = -1
-      let reviews = this.state.reviews.map((review) => {
-        counter ++
+      let reviews
+      if (this.state.reviews) {
+        reviews = this.state.reviews.map((review) => {
+          counter ++
 
-        let handleUpvote = () => {
+          let handleUpvote = () => {
+            return(
+              this.handleVote('up_vote', review)
+            )
+          }
+
+          let handleDownvote = () => {
+            return(
+              this.handleVote('down_vote', review)
+            )
+          }
+
+          let handleDelete = this.handleDelete
+
           return(
-            this.handleVote('up_vote', review)
+            <Review
+              key = {review.id}
+              id = {review.id}
+              rating = {review.rating}
+              body = {review.body}
+              votes = {review.votes}
+              user = {this.state.users[counter]}
+              handleUpvote = {handleUpvote}
+              handleDownvote = {handleDownvote}
+              handleDelete = {handleDelete}
+              currentUser = {this.state.currentUser}
+              barId = {this.state.barId}
+            />
           )
-        }
-
-        let handleDownvote = () => {
-          return(
-            this.handleVote('down_vote', review)
-          )
-        }
-
-        return(
-          <Review
-            key = {review.id}
-            id = {review.id}
-            rating = {review.rating}
-            body = {review.body}
-            votes = {review.votes}
-            user = {this.state.users[counter]}
-            handleUpvote = {handleUpvote}
-            handleDownvote = {handleDownvote}
-            handleDelete = {handleDelete}
-            currentUser = {this.state.currentUser}
-            barId = {this.state.itemId}
-          />
-        )
-      })
+        })
+      }
       return(
         <div>
           <h4>Reviews</h4>
