@@ -19,7 +19,7 @@ class ReviewList extends Component {
       review_id: review.id,
     }
     let jsonStringData = JSON.stringify(data);
-    fetch(`/api/v1/reviews/${review.id}/${type}`, {
+    fetch(`/api/v1/bars/${this.state.barId}/reviews/${review.id}/${type}`, {
       credentials: 'same-origin',
       method: 'post',
       headers: { 'Content-Type': 'application/json' },
@@ -35,7 +35,9 @@ class ReviewList extends Component {
         }
       })
       .then(response => {
-        fetch(`/api/v1/bars/${this.state.barId}`)
+        fetch(`/api/v1/bars/${this.state.barId}`, {
+          credentials: 'same-origin'
+        })
           .then(response => {
             if (response.ok) {
               return response;
@@ -59,7 +61,7 @@ class ReviewList extends Component {
   }
 
   handleDelete(reviewId) {
-    fetch(`/api/vi/reviews/${review.Id}`, {
+    fetch(`/api/vi/bars/${this.state.barId}/reviews/${review.Id}`, {
       method: 'delete'
     })
     .then(response => {
@@ -117,7 +119,6 @@ class ReviewList extends Component {
         let newCurrentUser = body.currentUser
         let newReviews = body.reviews
         let newUsers = body.users
-        debugger
         this.setState({
           currentUser: newCurrentUser,
           reviews: newReviews,
@@ -147,14 +148,13 @@ class ReviewList extends Component {
           }
 
           let handleDelete = this.handleDelete
-
           return(
             <Review
               key = {review.id}
               id = {review.id}
               rating = {review.rating}
               body = {review.body}
-              votes = {review.votes}
+              score = {review.score}
               user = {this.state.users[counter]}
               handleUpvote = {handleUpvote}
               handleDownvote = {handleDownvote}

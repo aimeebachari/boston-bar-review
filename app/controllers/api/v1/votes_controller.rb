@@ -19,6 +19,7 @@ class Api::V1::VotesController < ApplicationController
   end
 
   def update_vote!(new_value)
+
     if @vote
       if @vote.value == new_value
         @vote.update(value: 0)
@@ -29,6 +30,12 @@ class Api::V1::VotesController < ApplicationController
       @vote = @user.votes.create(value: new_value, review: @review)
       @vote.save
     end
-    @review.update_score!
+    @votes = Vote.where(review: @review)
+    sum = 0
+    @votes.each do |vote|
+      sum += vote.value
+    end
+
+    @review.score = sum
   end
 end

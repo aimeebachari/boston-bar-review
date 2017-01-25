@@ -21,19 +21,21 @@ class Review extends Component {
       upvote = <button className="upVote" onClick={this.props.handleUpvote}>Up</button>
       downvote = <button className="downVote" onClick={this.props.handleDownvote}>Down</button>
     }
-    
-    if (this.props.currentUser === this.props.userId) {
+
+    if (this.props.currentUser.id === this.props.user.id) {
       edit =<div className="button">
-              <a href={`/bars/${this.props.barId}/review/${this.props.id}/edit`}>Edit</a>
+              <a href={`/bars/${this.props.barId}/reviews/${this.props.id}/edit`}>Edit</a>
             </div>
       destroy = <div className="button" onClick={this.props.handleDelete}>Delete</div>
     }
+
+    let score = <p>{this.props.score}</p>
 
     return(
       <div>
         {body}
         <div>
-          {this.props.votes}
+          {score}
           {upvote}
           {downvote}
           {edit}
