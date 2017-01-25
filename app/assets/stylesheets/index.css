@@ -3,7 +3,7 @@ body {
   padding-left: 50px;
   padding-right: 50px;
   padding-bottom: 50px;
-  background-image: url(' <%= asset_path("boston-404526.jpg") %>');
+  background-image: url("boston-404526.jpg");
 }
 
 #default-image {
