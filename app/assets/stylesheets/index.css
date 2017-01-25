@@ -3,7 +3,7 @@ body {
   padding-left: 50px;
   padding-right: 50px;
   padding-bottom: 50px;
-  background-image: url(' <%= asset_path("boston-404526.jpg") %>');
+  background-image: url("/assets/boston-404526.jpg");
 }
 
 #default-image {
@@ -33,7 +33,7 @@ body {
   font-size: 40px;
 }
 
-#error {
+#errors {
   color: red;
 }
 
@@ -72,10 +72,6 @@ h1 {
   padding-top: 40px;
   color: white;
   font-size: 25px;
-}
-
-#errors {
-  color: red;
 }
 
 #bars-index {
