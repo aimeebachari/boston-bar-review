@@ -1,6 +1,8 @@
 require 'rails_helper'
 require 'database_cleaner'
 
+# Changed Reviews to React
+
 DatabaseCleaner.strategy = :truncation
 
 feature "Admin permissions" do
@@ -87,7 +89,7 @@ feature "Admin permissions" do
     expect(page).to_not have_content("JJ's")
   end
 
-  scenario "admin can delete any review" do
+  xscenario "admin can delete any review" do
     bar_one
     review_one
     login_as_user(user_two)
@@ -102,6 +104,6 @@ feature "Admin permissions" do
     expect(page).to_not have_content("This is a review")
   end
 
-  
+
   DatabaseCleaner.clean
 end
