@@ -61,8 +61,9 @@ h1 {
   color: white;
 }
 
-#bar-details {
+.bar-details {
   color: white;
+  text-align: center;
 }
 
 #search {
@@ -146,4 +147,8 @@ h4 {
 
 #ReviewList {
   color: white;
+}
+
+.bar-title {
+  text-align: center;
 }

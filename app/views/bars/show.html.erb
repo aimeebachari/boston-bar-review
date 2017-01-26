@@ -8,15 +8,18 @@
       <h3>Rating: <%= @average.to_f.round(1) %> </h3>
     <% end %>
 
-<br />
-<h1> <%= @bar.name %> </h1>
+    <br/>
+    <br/>
+    <div class="bar-title">
+      <h1> <%= @bar.name %> </h1>
+    </div>
 
-    <div id="bar-details">
+    <div class="bar-details">
       <p> <%= @bar.address %> </p>
       <p> <%= @bar.city %>, <%= @bar.state %>, <%= @bar.zip %> </p>
     </div>
 
-    <div id="bar-details">
+    <div class="bar-details">
       <% unless @bar.description.nil? %>
         <p> <%= @bar.description %> </p>
       <% end %>
