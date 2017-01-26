@@ -96,14 +96,12 @@ feature "Admin permissions" do
     expect(page).to have_content("This is a review")
 
     expect(page).to have_content("Delete")
-    
+
     click_on("Delete")
 
     expect(page).to_not have_content("This is a review")
   end
 
-  # xscenario "admin can change admin status of users" do
-  #
-  # end
+  
   DatabaseCleaner.clean
 end

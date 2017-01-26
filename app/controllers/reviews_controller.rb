@@ -4,6 +4,7 @@ class ReviewsController < ApplicationController
     @reviews = Review.all
   end
 
+
   def new
     @bar = Bar.find(params[:bar_id])
     @review = Review.new
