@@ -16,27 +16,23 @@ class VotesController < ApplicationController
 
   def load_review_and_vote
     @review = Review.find(params[:review_id])
-    @vote = @review.votes.where(user_id: current_user.id).first
-    binding.pry
+    @user = current_user
+    @vote = @review.votes.where(user: @user).first
   end
 
   def update_vote!(new_value)
-
     if @vote
       if @vote.value == new_value
         @vote.update(value: 0)
       else
         @vote.update(value: new_value)
       end
-    else @vote = current_user.votes.create(value: new_value, review: @review)
+    else
+      @vote = @user.votes.create(value: new_value, review: @review)
       @vote.save
     end
-    @votes = Vote.where(review: @review)
-    sum = 0
-    @votes.each do |vote|
-      sum += vote.value
-    end
-
-    @review.score = sum
+    @review.update_score!
+    binding.pry
   end
+
 end

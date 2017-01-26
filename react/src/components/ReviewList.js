@@ -128,6 +128,8 @@ class ReviewList extends Component {
       })
     }
 
+    
+
     render() {
       let counter = -1
       let reviews

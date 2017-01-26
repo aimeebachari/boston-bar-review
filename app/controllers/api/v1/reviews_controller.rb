@@ -10,10 +10,7 @@ class Api::V1::ReviewsController < ApplicationController
   def show
     @bar = Bar.find(params[:bar_id])
     @review = @bar.reviews.find(params[:id])
-    format_to do |format|
-      format.html
-      format.json {render json: @review}
-    end
+    render json: @review
   end
   #
   # def create
