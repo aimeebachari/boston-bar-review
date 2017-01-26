@@ -1,15 +1,18 @@
 
 <div class="row container">
   <div class="barlist columns large-6 small-12">
-    <h3>Get Your Drink On 🍻</h3>
-    <% if @bars.empty? %>
-    <p>No Bars!</p>
-    <% end %>
-    <% @bars.each do |bar| %>
-    <p id="bars-index">
-      <%= link_to bar.name, bar %>
-    </p>
-    <% end %>
+    <div>
+      <h3>Get Your Drink On 🍻</h3>
+      <div id="BarList"></div>
+      <% if @bars.empty? %>
+      <p>No Bars!</p>
+      <% end %>
+      <% @bars.each do |bar| %>
+      <p id="bars-index">
+        <%= link_to bar.name, bar %>
+      </p>
+      <% end %>
+    </div>
   </div>
 
   <div class="bar-form columns large-6 small-12">

@@ -30,7 +30,7 @@ class BarsController < ApplicationController
 
     if @bar.save
       flash[:notice] = "Bar created successfully!"
-      redirect_to @bar
+      redirect_to bars_path
     else
       @bars = Bar.all
       flash.now[:notice] = @bar.errors.full_messages.to_sentence
