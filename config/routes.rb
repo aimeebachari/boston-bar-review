@@ -3,7 +3,7 @@ Rails.application.routes.draw do
 
   devise_for :users
 
-  resources :users, only: [:index]
+  resources :users, only: [:index, :show]
   match 'users/:id' => 'users#destroy', :via => :delete, :as => :admin_destroy_user
 
   resources :bars, only: [:index, :show, :create, :edit, :update, :destroy] do
