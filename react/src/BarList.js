@@ -7,34 +7,17 @@ class BarList extends React.Component {
       name: ""
     };
 
-    this.handleSubmit = this.handleSubmit.bind(this);
-    this.handleName = this.handleName.bind(this);
   }
 
-  handleName(event) {
-    this.setState({ name: event.target.value });
+  componentDidMount(){
+    fetch('api/v1/bars',{
+      credentials: "same-origin"
+    }).then(response => {
+      response.json();
+    }).then(response=>{debugger;
+      this.setState({bars:response.bars});
+    });
   }
-
-  handleSubmit(event) {
-    event.preventDefault();
-    // let barList = this.state.barList;
-    // this.setState({ bars: barList });
-  }
-
-  // componentDidMount(){
-  //   // fetch('api/v1/bars',{
-  //   //   method: 'post',
-  //   //   credentials: 'same-origin'
-  //   // }).then(response=>{
-  //   // });
-  //   fetch('api/v1/bars',{
-  //
-  //   }).then(response => {
-  //     response.json();
-  //   }).then(response=>{
-  //     this.setState({bars:response.bars});
-  //   });
-  // }
 
   render(){
     let bars = this.state.bars;
