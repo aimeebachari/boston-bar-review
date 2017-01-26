@@ -30,7 +30,7 @@ RSpec.feature "User creates a new bar" do
     fill_in "Url", with: "www.jjs.com"
     fill_in "Description", with: "A great bar downtown!"
 
-    click_button "Submit"
+    click_button "Add Bar"
 
     expect(page).to have_content "Bar created successfully!"
     expect(page).to have_content "JJ's"
@@ -48,7 +48,7 @@ RSpec.feature "User creates a new bar" do
     fill_in "Url", with: "www.jjs.com"
     fill_in "Description", with: "A great bar downtown!"
 
-    click_button "Submit"
+    click_button "Add Bar"
 
     field = find_field("Name")
     expect(field.value).to eq("JJ's")
@@ -60,7 +60,7 @@ RSpec.feature "User creates a new bar" do
     visit bars_path
     expect(page).to have_content "New Bar Form"
 
-    click_button "Submit"
+    click_button "Add Bar"
 
     expect(page).to have_content "Name can't be blank"
     expect(page).to have_content "Address can't be blank"
@@ -106,6 +106,7 @@ feature "can delete a bar" do
 
     expect(page).to_not have_content("Sample Bar")
   end
+  DatabaseCleaner.clean
 end
 
 RSpec.feature "User edits a bar" do
@@ -117,6 +118,15 @@ RSpec.feature "User edits a bar" do
       username: "Sammo",
       email: "123@gmail.com",
       password: "password"
+      )
+    }
+
+    let(:user_two) { User.create(
+      first_name: "Sterling",
+      last_name: "Archer",
+      username: "Dutchess",
+      email: "archer@gmail.com",
+      password: "things"
       )
     }
 
@@ -147,6 +157,25 @@ RSpec.feature "User edits a bar" do
 
     expect(page).to_not have_content "123 Abc Street"
     expect(page).to have_content "321 ZZZ Street"
+  end
+
+  scenario "no option to edit if they did not create" do
+    login_as_user(user_two)
+    bar_one
+    visit bars_path
+
+    click_on "Happy Bar"
+
+    expect(page).to_not have_content "Edit Bar"
+  end
+
+  scenario "get kicked back if they manually enter URL" do
+    login_as_user(user_two)
+    bar_one
+
+    visit "/bars/#{bar_one.id}/edit"
+
+    expect(page).to have_content("You don't have permission to edit this bar!")
   end
   DatabaseCleaner.clean
 end

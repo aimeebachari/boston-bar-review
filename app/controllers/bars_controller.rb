@@ -1,7 +1,11 @@
 class BarsController < ApplicationController
 
   def index
-    @bars = Bar.all
+    if params[:term]
+      @bars = Bar.search(params[:term])
+    else
+      @bars = Bar.all
+    end
     @bar = Bar.new
   end
 
@@ -24,20 +28,26 @@ class BarsController < ApplicationController
     @user = current_user
     @bar = Bar.new(bar_params)
     @bar.user = current_user
+
     if @bar.save
       flash[:notice] = "Bar created successfully!"
       redirect_to @bar
     else
       @bars = Bar.all
-      flash[:notice] = @bar.errors.full_messages.to_sentence
+      flash.now[:notice] = @bar.errors.full_messages.to_sentence
       render :index
     end
   end
 
   def edit
     @bar = Bar.find(params[:id])
-
-    render :edit
+    @user = current_user
+    if @user.id == @bar.user_id || @user.admin?
+      render :edit
+    else
+      flash[:notice] = "You don't have permission to edit this bar!"
+      redirect_to @bar
+    end
   end
 
   def update
@@ -46,19 +56,28 @@ class BarsController < ApplicationController
     if @bar.update(bar_params)
       redirect_to bar_path
     else
+      flash[:notice] = @bar.errors.full_messages.to_sentence
       render :edit
     end
   end
 
   def destroy
-    Bar.destroy(params[:id])
-    redirect_to bars_path
+    @bar = Bar.find(params[:id])
+    @user = current_user
+
+    if @user.id == @bar.user_id || @user.admin?
+      Bar.destroy(params[:id])
+      redirect_to bars_path
+    else
+      flash[:notice] = "You don't have permission to delete this bar!"
+      redirect_to @bar
+    end
   end
 
   private
 
   def bar_params
-    params.require(:bar).permit(:name, :address, :city, :state, :zip, :url, :description)
+    params.require(:bar).permit(:name, :address, :city, :state, :zip, :url, :description, :term)
   end
 
 end

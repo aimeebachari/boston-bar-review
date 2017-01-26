@@ -69,7 +69,6 @@ ActiveRecord::Schema.define(version: 20170125220313) do
     t.string   "username",                               null: false
     t.string   "first_name",                             null: false
     t.string   "last_name",                              null: false
-    t.string   "avatar_url",             default: ""
     t.boolean  "admin",                  default: false
     t.string   "reset_password_token"
     t.datetime "reset_password_sent_at"
@@ -81,6 +80,7 @@ ActiveRecord::Schema.define(version: 20170125220313) do
     t.inet     "last_sign_in_ip"
     t.datetime "created_at",                             null: false
     t.datetime "updated_at",                             null: false
+    t.string   "avatar"
     t.index ["email"], name: "index_users_on_email", unique: true, using: :btree
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true, using: :btree
   end

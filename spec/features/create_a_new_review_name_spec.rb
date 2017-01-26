@@ -72,8 +72,16 @@ RSpec.feature 'user can edit reviews' do
     last_name: "Cole",
     username: "Sammo",
     email: "123@gmail.com",
-    password: "password")
-  }
+    password: "password"
+  )}
+
+  let(:user_two) { User.create(
+    first_name: "Sterling",
+    last_name: "Archer",
+    username: "Dutchess",
+    email: "archer@gmail.com",
+    password: "things"
+  )}
 
   let(:bar_one) { Bar.create(
     name: "JJ's",
@@ -84,8 +92,14 @@ RSpec.feature 'user can edit reviews' do
     url: "www.jjs.com",
     description: "A great bar downtown!",
     user: user_one
-    )
-  }
+  )}
+
+  let(:review_one) {Review.create(
+    body: "This is a review",
+    rating: "5",
+    user: user_one,
+    bar: bar_one,
+    )}
 
   scenario 'successfully' do
     login_as_user(user_one)
@@ -107,6 +121,34 @@ RSpec.feature 'user can edit reviews' do
     expect(page).to have_content('Only kinda cheap and stuff')
     expect(page).to_not have_content('So cheap and stuff')
   end
+
+  scenario "can't edit if they didn't create" do
+    login_as_user(user_one)
+    visit bar_path(bar_one)
+    click_on 'Add Review'
+
+    choose '5'
+    fill_in 'Review', with: 'So cheap and stuff'
+    click_on 'Submit Review'
+
+    click_on 'Logout'
+
+    login_as_user(user_two)
+    visit bar_path(bar_one)
+    Capybara.exact = true
+    expect(page).to_not have_link("Edit")
+  end
+
+  scenario "get kicked back if they manually enter URL and didn't create" do
+
+
+
+
+    login_as_user(user_two)
+    visit "/bars/#{bar_one.id}/reviews/#{review_one.id}/edit"
+
+    expect(page).to have_content("You don't have permission to edit this review!")
+  end
   DatabaseCleaner.clean
 end
 
@@ -120,6 +162,14 @@ RSpec.feature 'user can destroy reviews' do
     email: "123@gmail.com",
     password: "password")
   }
+
+  let(:user_two) { User.create(
+    first_name: "Sterling",
+    last_name: "Archer",
+    username: "Dutchess",
+    email: "archer@gmail.com",
+    password: "things"
+  )}
 
   let(:bar_one) { Bar.create(
     name: "JJ's",
@@ -150,6 +200,23 @@ RSpec.feature 'user can destroy reviews' do
 
     expect(page).to_not have_content('This will delete')
 
+  end
+
+scenario 'can not delete a review they didnt write' do
+    login_as_user(user_one)
+    visit bar_path(bar_one)
+    click_on 'Add Review'
+
+    choose '5'
+    fill_in 'Review', with: 'So cheap and stuff'
+    click_on 'Submit Review'
+
+    click_on 'Logout'
+
+    login_as_user(user_two)
+    visit bar_path(bar_one)
+
+    expect(page).to_not have_link("Delete")
   end
   DatabaseCleaner.clean
 end

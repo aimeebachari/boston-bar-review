@@ -7,28 +7,45 @@
     <%= javascript_include_tag 'application' %>
   </head>
 
-  <ul class="nav">
-    <li class="active"><a href="/bars">Boston Bar Review</a></li>
-  </ul>
+  <div class="top-bar">
+    <div class="top-bar-left">
+      <div class="nav">
+        <p class="active"><a href="/bars">Boston Bar Review</a></p>
+      </div>
+    </div>
 
+    <div class="top-bar-right">
+      <form id="search-form" action="/bars" accept-charset="UTF-8" method="get">
+        <ul class="menu">
+          <li><input type="text" name="term" id="search-field" placeholder="Search"></li>
+          <li><button type="submit" class="button" value="Search" id="search-button" data-disable-with="Search">Search</button></li>
+        </ul>
+      </form>
+    </div>
+  </div>
 
-  <p class="navbar-text pull-right">
-  <% if user_signed_in? %>
-    Logged in as <strong><%= current_user.email %></strong>.
-    <%= link_to 'Edit profile', edit_user_registration_path, :class => 'navbar-link' %> |
-    <%= link_to "Logout", destroy_user_session_path, method: :delete, :class => 'navbar-link'  %>
-  <% else %>
-    <%= link_to "Sign up", new_user_registration_path, :class => 'navbar-link'  %> |
-    <%= link_to "Login", new_user_session_path, :class => 'navbar-link'  %>
-  <% end %>
+    <div id="user-email">
+      <% if user_signed_in? %>
+        Logged in as <strong><%= current_user.username %></strong>.
+        <%= link_to 'Edit profile', edit_user_registration_path, :class => 'navbar-link' %> |
+        <%= link_to "Logout", destroy_user_session_path, method: :delete, :class => 'navbar-link'  %>
+      <% else %>
+        <%= link_to "Sign up", new_user_registration_path, :class => 'navbar-link'  %> |
+        <%= link_to "Login", new_user_session_path, :class => 'navbar-link'  %>
+      <% end %>
+    </div>
 
   <body>
-    <% if notice %>
-    <p class="alert alert-success"><%= notice %></p>
-    <% end %>
-    <% if alert %>
-    <p class="alert alert-danger"><%= alert %></p>
-    <% end %>
+    <div class="row container">
+      <div class="columns large-6 small-12">
+        <% if notice %>
+         <p class="alert alert-success" id="errors"><%= notice %></p>
+         <% end %>
+         <% if alert %>
+         <p class="alert alert-danger"><%= alert %></p>
+         <% end %>
+       </div>
+     </div>
     <%= yield %>
   </body>
 </html>

@@ -21,6 +21,9 @@ class ReviewsController < ApplicationController
     @review.bar = @bar
     @review.user = @user
     if @review.save
+      if @user != @bar.user
+        UserMailer.review_email(@bar).deliver_now
+      end
       flash[:notice] = "Review created successfully!"
       redirect_to @bar
     else
@@ -32,6 +35,14 @@ class ReviewsController < ApplicationController
   def edit
     @review = Review.find(params[:id])
     @bar = @review.bar
+    @user = current_user
+
+    if @user.id == @review.user_id || @user.admin?
+      render :edit
+    else
+      flash[:notice] = "You don't have permission to edit this review!"
+      redirect_to @bar
+    end
   end
 
   def update
@@ -46,8 +57,16 @@ class ReviewsController < ApplicationController
 
   def destroy
     @review = Review.find(params[:id])
-    @bar = Bar.find(params[:bar_id])
-    @review.destroy
+    @bar = @review.bar
+    @user = current_user
+
+    if @user.id == @review.user_id || @user.admin?
+      @review.destroy
+      redirect_to @bar
+    else
+      flash[:notice] = "You don't have permission to delete this review!"
+      redirect_to @bar
+    end
   end
 
   private
