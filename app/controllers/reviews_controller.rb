@@ -18,7 +18,7 @@ class ReviewsController < ApplicationController
     @review.user = @user
     if @review.save
       if @user != @bar.user
-        UserMailer.review_email(@bar).deliver_now
+        UserMailer.review_email(@bar).deliver_later
       end
       flash[:notice] = "Review created successfully!"
       redirect_to @bar
