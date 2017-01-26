@@ -12,6 +12,7 @@ class ReviewList extends Component {
     }
 
     this.handleVote = this.handleVote.bind(this);
+    this.handleDelete = this.handleDelete.bind(this);
   }
 
   handleVote(type, review) {
@@ -61,8 +62,9 @@ class ReviewList extends Component {
   }
 
   handleDelete(reviewId) {
-    fetch(`/api/vi/bars/${this.state.barId}/reviews/${review.Id}`, {
-      method: 'delete'
+    fetch(`/api/v1/bars/${this.state.barId}/reviews/${reviewId}`, {
+      method: 'delete',
+      credentials: 'same-origin'
     })
     .then(response => {
       if (response.ok) {
@@ -74,7 +76,9 @@ class ReviewList extends Component {
       }
     })
     .then(response => {
-      fetch(`/api/v1/bars/${this.state.barId}`)
+      fetch(`/api/v1/bars/${this.state.barId}`,{
+        credentials: 'same-origin'
+      })
         .then(response => {
           if (response.ok) {
             return response;
@@ -128,7 +132,7 @@ class ReviewList extends Component {
       })
     }
 
-    
+
 
     render() {
       let counter = -1
@@ -149,6 +153,12 @@ class ReviewList extends Component {
             )
           }
 
+          let handleDeleteReview = () => {
+            return(
+              this.handleDelete(review.id)
+            )
+          }
+
           let handleDelete = this.handleDelete
           return(
             <Review
@@ -160,13 +170,16 @@ class ReviewList extends Component {
               user = {this.state.users[counter]}
               handleUpvote = {handleUpvote}
               handleDownvote = {handleDownvote}
-              handleDelete = {handleDelete}
+              handleDelete = {handleDeleteReview}
               currentUser = {this.state.currentUser}
               barId = {this.state.barId}
             />
           )
         })
       }
+      reviews = reviews.sort(function(a,b) {
+        return b.key - a.key
+      })
       return(
         <div>
           <h4>Reviews</h4>

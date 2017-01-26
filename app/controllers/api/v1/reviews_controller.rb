@@ -27,14 +27,9 @@ class Api::V1::ReviewsController < ApplicationController
   # end
 
   def destroy
-    data = JSON.parse(request.body.read)
-    review = Review.find(data["id"])
-    if review.delete
-      @bar = Bar.find(params[:bar_id])
-      @reviews = @bar.reviews
-      @reviews.order(:id)
-      render json: @reviews
-    end
+    @review = Review.find(params[:id])
+    @bar = Bar.find(params[:bar_id])
+    @review.destroy
   end
 
   # def update

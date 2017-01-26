@@ -26,14 +26,14 @@ class Review extends Component {
       edit =<div className="button">
               <a href={`/bars/${this.props.barId}/reviews/${this.props.id}/edit`}>Edit</a>
             </div>
-      destroy = <div className="button" onClick={this.props.handleDelete}>Delete</div>
+      destroy = <div className="button" onClick={this.props.handleDelete} id={`destroy-${this.props.id}`}>Delete</div>
     }
 
     let score = <p>{this.props.score}</p>
 
     return(
       <div>
-        {body}
+        {this.props.rating} | {body}
         <div>
           {score}
           {upvote}

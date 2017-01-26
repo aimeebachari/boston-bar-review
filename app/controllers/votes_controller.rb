@@ -32,7 +32,6 @@ class VotesController < ApplicationController
       @vote.save
     end
     @review.update_score!
-    binding.pry
   end
 
 end
