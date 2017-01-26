@@ -30,7 +30,7 @@ feature "email" do
     user: user_one
     )
   }
-  scenario "bar creator receives email when someone reviews a bar" do
+  xscenario "bar creator receives email when someone reviews a bar" do
     bar_one
     login_as_user(user_two)
     visit '/'
