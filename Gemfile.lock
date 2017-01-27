@@ -334,6 +334,8 @@ GEM
       sprockets (>= 2.8, < 4.0)
       sprockets-rails (>= 2.0, < 4.0)
       tilt (>= 1.1, < 3)
+    sendgrid (1.2.4)
+      json
     shoulda-matchers (3.1.1)
       activesupport (>= 4.0.0)
     simplecov (0.12.0)
@@ -409,6 +411,7 @@ DEPENDENCIES
   rails_12factor
   rspec-rails
   sass-rails (~> 5.0)
+  sendgrid
   shoulda-matchers
   spring
   spring-watcher-listen (~> 2.0.0)

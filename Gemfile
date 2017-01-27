@@ -18,6 +18,7 @@ gem 'foundation-rails'
 gem 'devise'
 gem 'carrierwave', '~> 1.0'
 gem 'fog'
+gem 'sendgrid'
 
 
 group :development, :test do
