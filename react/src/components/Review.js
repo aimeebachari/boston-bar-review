@@ -22,16 +22,16 @@ class Review extends Component {
       downvote = <i className="fa fa-thumbs-o-down" aria-hidden="true" onClick={this.props.handleDownvote}></i>;
     }
 
-    if (this.props.currentUser.id === this.props.user.id) {
-      edit = <a href={`/bars/${this.props.barId}/reviews/${this.props.id}/edit`}>Edit</a>;
-      destroy = <a href="javascript:;" onClick={this.props.handleDelete} id={`destroy-${this.props.id}`}>Delete</a>;
+    if (this.props.currentUser.id === this.props.user_id) {
+      edit = <span> | <a href={`/bars/${this.props.barId}/reviews/${this.props.id}/edit`}>Edit</a></span>;
+      destroy = <span> | <a href="javascript:;" onClick={this.props.handleDelete} id={`destroy-${this.props.id}`}>Delete</a></span>;
     }
 
     let score = <span>{this.props.score}</span>;
 
     return(
       <div>
-        {this.props.rating} | {body} | Score: {score} | {upvote} | {downvote} | {edit} | {destroy}
+        {this.props.rating} | {body} | Score: {score} | {upvote} | {downvote} {edit} {destroy}
       </div>
     );
   }

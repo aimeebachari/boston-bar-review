@@ -159,6 +159,7 @@ class ReviewList extends Component {
           };
 
           let handleDelete = this.handleDelete;
+          debugger
           return(
             <Review
               key = {review.id}
@@ -166,7 +167,7 @@ class ReviewList extends Component {
               rating = {review.rating}
               body = {review.body}
               score = {review.score}
-              user = {this.state.users[counter]}
+              user_id = {review.user_id}
               handleUpvote = {handleUpvote}
               handleDownvote = {handleDownvote}
               handleDelete = {handleDeleteReview}
