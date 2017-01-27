@@ -1,4 +1,5 @@
 import React from 'react';
+import Bar from './Bar';
 
 class BarList extends React.Component {
   constructor(props) {
@@ -26,11 +27,9 @@ class BarList extends React.Component {
     })
     .then(response => response.json())
     .then(response => {
-      debugger;
       let newBars = [];
       response.forEach(function(bar){
-        newBars.push(bar.name);
-        newBars.push(',');
+        newBars.push(bar);
       });
       newBars;
       this.setState({
@@ -41,8 +40,15 @@ class BarList extends React.Component {
 
 
   render(){
+    let bars = this.state.bars.map((bar)=>{
+      return(
+        <Bar
+          key = {bar.id}
+          bar = {bar}
+        />
+      );
+    });
 
-    let bars = this.state.bars;
     return(
       <div>
         {bars}

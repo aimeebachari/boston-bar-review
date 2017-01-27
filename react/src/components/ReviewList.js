@@ -3,13 +3,13 @@ import Review from './Review';
 
 class ReviewList extends Component {
   constructor(props) {
-    super(props)
+    super(props);
     this.state = {
       currentUser: null,
       reviews: [],
       users: [],
       barId: null
-    }
+    };
 
     this.handleVote = this.handleVote.bind(this);
     this.handleDelete = this.handleDelete.bind(this);
@@ -18,7 +18,7 @@ class ReviewList extends Component {
   handleVote(type, review) {
     let data = {
       review_id: review.id,
-    }
+    };
     let jsonStringData = JSON.stringify(data);
     fetch(`/api/v1/bars/${this.state.barId}/reviews/${review.id}/${type}`, {
       credentials: 'same-origin',
@@ -120,47 +120,45 @@ class ReviewList extends Component {
       })
       .then(response => response.json())
       .then(body => {
-        let newCurrentUser = body.currentUser
-        let newReviews = body.reviews
-        let newUsers = body.users
-        debugger;
+        let newCurrentUser = body.currentUser;
+        let newReviews = body.reviews;
+        let newUsers = body.users;
         this.setState({
           currentUser: newCurrentUser,
           reviews: newReviews,
           users: newUsers,
           barId: newBarId
-        })
-      })
+        });
+      });
     }
 
 
 
     render() {
-      let counter = -1
-      let reviews
+      let counter = -1;
+      let reviews;
       if (this.state.reviews) {
         reviews = this.state.reviews.map((review) => {
-          counter ++
+          counter ++;
 
           let handleUpvote = () => {
             return(
               this.handleVote('up_vote', review)
-            )
-          }
-
+            );
+          };
           let handleDownvote = () => {
             return(
               this.handleVote('down_vote', review)
-            )
-          }
+            );
+          };
 
           let handleDeleteReview = () => {
             return(
               this.handleDelete(review.id)
-            )
-          }
+            );
+          };
 
-          let handleDelete = this.handleDelete
+          let handleDelete = this.handleDelete;
           return(
             <Review
               key = {review.id}
@@ -175,18 +173,18 @@ class ReviewList extends Component {
               currentUser = {this.state.currentUser}
               barId = {this.state.barId}
             />
-          )
-        })
+          );
+        });
       }
       reviews = reviews.sort(function(a,b) {
-        return b.key - a.key
-      })
+        return b.key - a.key;
+      });
       return(
         <div>
           <h4>Reviews</h4>
           {reviews}
         </div>
-      )
+      );
     }
 }
 
