@@ -1,42 +1,42 @@
-# This file should contain all the record creation needed to seed the database with its default values.
-# The data can then be loaded with the rails db:seed command (or created alongside the database with db:setup).
-#
-# Examples:
-#
-#   movies = Movie.create([{ name: 'Star Wars' }, { name: 'Lord of the Rings' }])
-#   Character.create(name: 'Luke', movie: movies.first)
 
 User.create(
-  first_name: "A",
+  first_name: "Aimee",
   last_name: "Bachari",
   username: "aimeeb",
-  email: "wickeddrunkboston@gmail.com",
+  email: "aimeebachari@gmail.com",
   password: "password",
   admin: true
 )
-# Bar.create(id: 1,
-#  name: "Joe's Bar",
-#  address: "123 Main Street",
-#  city: "Boston",
-#  state: "MA",
-#  zip: "02111",
-#  url: "",
-#  description: "")
-#
-# Bar.create(id: 2,
-#  name: "Bill's Bar",
-#  address: "321 Main Street",
-#  city: "Arlington",
-#  state: "MA",
-#  zip: "02111",
-#  url: "",
-#  description: "")
-#
-# Bar.create(id: 3,
-#  name: "Kyle's Bar",
-#  address: "123 Summer Street",
-#  city: "Somerville",
-#  state: "MA",
-#  zip: "02111",
-#  url: "",
-#  description: "")
+
+User.create(
+  first_name: "Sam",
+  last_name: "Cole",
+  username: "samcole",
+  email: "samcole1992@gmail.com",
+  password: "password",
+  admin: true
+)
+User.create(
+  first_name: "Nadia",
+  last_name: "Albritton",
+  username: "nalbritton",
+  email: "ferminnadia@gmail.com",
+  password: "password",
+  admin: true
+)
+User.create(
+  first_name: "Chris",
+  last_name: "Haylon",
+  username: "chaylon",
+  email: "chaylon@fandm.edu",
+  password: "password",
+  admin: true
+)
+User.create(
+  first_name: "Francis",
+  last_name: "Kim",
+  username: "froontown",
+  email: "fkim28@gmail.com",
+  password: "password",
+  admin: true
+)

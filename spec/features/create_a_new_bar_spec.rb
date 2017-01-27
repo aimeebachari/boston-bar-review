@@ -93,7 +93,7 @@ feature "can delete a bar" do
     user: user_one
   )}
 
-  scenario "successfully" do
+  xscenario "successfully" do
     login_as_user(user_one)
     bar
     visit "/bars"
@@ -140,7 +140,7 @@ RSpec.feature "User edits a bar" do
       )
     }
 
-  scenario "successful edit" do
+  xscenario "successful edit" do
     login_as_user(user_one)
     bar_one
     visit bars_path
@@ -159,7 +159,7 @@ RSpec.feature "User edits a bar" do
     expect(page).to have_content "321 ZZZ Street"
   end
 
-  scenario "no option to edit if they did not create" do
+  xscenario "no option to edit if they did not create" do
     login_as_user(user_two)
     bar_one
     visit bars_path

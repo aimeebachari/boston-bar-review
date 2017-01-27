@@ -13,6 +13,12 @@ Rails.application.routes.draw do
     end
   end
 
+  namespace :api do
+    namespace :v1 do
+      resources :bars
+    end
+  end
+
   root "bars#index"
 
   namespace :api do

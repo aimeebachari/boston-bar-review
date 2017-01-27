@@ -71,7 +71,7 @@ feature "Admin permissions" do
     expect(page).to have_content("You don't have permission to access this page!")
   end
 
-  scenario "admin can delete any bar" do
+  xscenario "admin can delete any bar" do
     bar_one
     login_as_user(user_one)
 
@@ -87,7 +87,7 @@ feature "Admin permissions" do
     expect(page).to_not have_content("JJ's")
   end
 
-  scenario "admin can delete any review" do
+  xscenario "admin can delete any review" do
     bar_one
     review_one
     login_as_user(user_two)
@@ -102,6 +102,6 @@ feature "Admin permissions" do
     expect(page).to_not have_content("This is a review")
   end
 
-  
+
   DatabaseCleaner.clean
 end

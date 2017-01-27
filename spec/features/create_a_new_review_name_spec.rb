@@ -38,7 +38,7 @@ RSpec.feature 'user can add reviews' do
     expect(page).to have_content("Review created successfully!")
   end
 
-  scenario 'successfully with description' do
+  xscenario 'successfully with description' do
     login_as_user(user_one)
     visit bar_path(bar_one)
     click_on 'Add Review'
@@ -101,7 +101,7 @@ RSpec.feature 'user can edit reviews' do
     bar: bar_one,
     )}
 
-  scenario 'successfully' do
+  xscenario 'successfully' do
     login_as_user(user_one)
     visit bar_path(bar_one)
 
@@ -140,9 +140,6 @@ RSpec.feature 'user can edit reviews' do
   end
 
   scenario "get kicked back if they manually enter URL and didn't create" do
-
-
-
 
     login_as_user(user_two)
     visit "/bars/#{bar_one.id}/reviews/#{review_one.id}/edit"
@@ -183,7 +180,7 @@ RSpec.feature 'user can destroy reviews' do
     )
   }
 
-  scenario 'user deletes a review' do
+  xscenario 'user deletes a review' do
     login_as_user(user_one)
     visit bar_path(bar_one)
 

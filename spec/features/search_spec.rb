@@ -35,7 +35,7 @@ feature "search" do
 
   DatabaseCleaner.start
 
-  scenario "searches for a bar successfully" do
+  xscenario "searches for a bar successfully" do
     login_as_user(user_one)
     bar_one
     bar_two
@@ -51,7 +51,7 @@ feature "search" do
     expect(page).to_not have_content("JJ's")
   end
 
-  scenario "searches for a bar with no matches" do
+  xscenario "searches for a bar with no matches" do
     login_as_user(user_one)
     bar_one
     bar_two
