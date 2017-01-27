@@ -2,8 +2,8 @@ import React, {Component} from 'react';
 
 class Review extends Component {
   constructor(props) {
-    super(props);
-    this.state = {};
+    super(props)
+    this.state = {}
   }
 
   render() {
@@ -14,27 +14,35 @@ class Review extends Component {
     let destroy = null;
 
     if (this.props.body) {
-      body = <span>{this.props.body}</span>;
+      body = <p>{this.props.body}</p>
     }
 
     if (this.props.currentUser) {
-      upvote = <i className="fa fa-thumbs-o-up" aria-hidden="true" onClick={this.props.handleUpvote}></i>;
-      downvote = <i className="fa fa-thumbs-o-down" aria-hidden="true" onClick={this.props.handleDownvote}></i>;
+      upvote = <button className="upVote" onClick={this.props.handleUpvote}>Up</button>
+      downvote = <button className="downVote" onClick={this.props.handleDownvote}>Down</button>
     }
 
     if (this.props.currentUser.id === this.props.user.id) {
-      edit = <a href={`/bars/${this.props.barId}/reviews/${this.props.id}/edit`}>Edit</a>;
-      // destroy = <div className="button" onClick={this.props.handleDelete} id={`destroy-${this.props.id}`}>Delete</div>;
-      destroy = <a href="javascript:;" onClick={this.props.handleDelete} id={`destroy-${this.props.id}`}>Delete</a>;
+      edit =<div className="button">
+              <a href={`/bars/${this.props.barId}/reviews/${this.props.id}/edit`}>Edit</a>
+            </div>
+      destroy = <div className="button" onClick={this.props.handleDelete} id={`destroy-${this.props.id}`}>Delete</div>
     }
 
-    let score = <span>{this.props.score}</span>;
+    let score = <p>{this.props.score}</p>
 
     return(
       <div>
-        {this.props.rating} | {body} | Score: {score} | {upvote} | {downvote} | {edit} | {destroy}
+        {this.props.rating} | {body}
+        <div>
+          {score}
+          {upvote}
+          {downvote}
+          {edit}
+          {destroy}
+        </div>
       </div>
-    );
+    )
   }
 }
 

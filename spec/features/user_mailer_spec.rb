@@ -1,7 +1,5 @@
 require "rails_helper"
 
-# Changed Reviews to React
-
 feature "email" do
 
   let(:user_one) { User.create(
@@ -32,7 +30,7 @@ feature "email" do
     user: user_one
     )
   }
-  xscenario "bar creator receives email when someone reviews a bar" do
+  scenario "bar creator receives email when someone reviews a bar" do
     bar_one
     login_as_user(user_two)
     visit '/'
@@ -47,7 +45,7 @@ feature "email" do
     expect(ActionMailer::Base.deliveries.count).to eq(1)
   end
 
-  xscenario "users don't get an email when they review their own bar" do
+  scenario "users don't get an email when they review their own bar" do
     bar_one
     login_as_user(user_one)
     visit '/'

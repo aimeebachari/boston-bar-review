@@ -61,9 +61,8 @@ h1 {
   color: white;
 }
 
-.bar-details {
+#bar-details {
   color: white;
-  text-align: center;
 }
 
 #search {
@@ -143,12 +142,4 @@ input {
 
 h4 {
   color: white;
-}
-
-#ReviewList {
-  color: white;
-}
-
-.bar-title {
-  text-align: center;
 }
