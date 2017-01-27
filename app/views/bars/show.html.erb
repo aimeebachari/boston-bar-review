@@ -7,9 +7,11 @@
     <% else %>
       <h3>Rating: <%= @average.to_f.round(1) %> </h3>
     <% end %>
+    <p class="created-by">Created by <%= @bar.user.username %></p>
 
 <br />
-<h1> <%= @bar.name %> </h1>
+<div class="bar-show-details">
+  <h1> <%= @bar.name %> </h1>
 
     <div id="bar-details">
       <p> <%= @bar.address %> </p>
@@ -22,6 +24,8 @@
       <% end %>
     </div>
   </div>
+</div>
+
 
 
   <div class="barlist columns large-6 small-12">
