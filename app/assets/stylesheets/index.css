@@ -1,8 +1,10 @@
+
 body {
   padding-top: 20px;
   padding-left: 50px;
   padding-right: 50px;
   padding-bottom: 50px;
+  font-family: "Questrial", sans-serif;
 
   background-image: url("/assets/boston-404526.jpg");
 }
@@ -59,6 +61,7 @@ li {
 
 h1 {
   color: white;
+  font-family: "Questrial", sans-serif;
 }
 
 #bar-details {
@@ -91,10 +94,12 @@ h1 {
 
 h3 {
   color: white;
+  font-family: "Questrial", sans-serif;
 }
 
 h2 {
   color: white;
+  font-family: "Questrial", sans-serif;
 }
 
 .active {
@@ -142,6 +147,7 @@ input {
 
 h4 {
   color: white;
+  font-family: "Questrial", sans-serif;
 }
 
 #ReviewList {
@@ -152,4 +158,12 @@ ul {
     padding: 0;
     list-style-type: none;
     margin: 0;
+}
+
+.bar-show-details {
+  text-align: center;
+}
+
+.created-by {
+  color: white;
 }
