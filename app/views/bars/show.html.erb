@@ -15,14 +15,17 @@
 <div class="bar-show-details">
   <h1> <%= @bar.name %> </h1>
 
-    <div id="bar-details">
+    <div class="bar-details">
       <p> <%= @bar.address %> </p>
       <p> <%= @bar.city %>, <%= @bar.state %>, <%= @bar.zip %> </p>
     </div>
 
-    <div id="bar-details">
+    <div class="bar-details">
       <% unless @bar.description.nil? %>
         <p> <%= @bar.description %> </p>
+      <% end %>
+      <% unless @bar.url.nil? %>
+        <p> <%= link_to "#{@bar.url}", "#{@bar.url}" %>
       <% end %>
     </div>
   </div>
@@ -42,13 +45,6 @@
   </div>
 <% end %>
 
-
-<div>
-  <% unless @bar.url.nil? %>
-    <p> <%= @bar.url %> </p>
-  <% end %>
-
-</div>
 
 <div id="ReviewList"></div>
 
