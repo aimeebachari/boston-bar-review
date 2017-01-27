@@ -7,7 +7,9 @@
     <% else %>
       <h3>Rating: <%= @average.to_f.round(1) %> </h3>
     <% end %>
-    <p class="created-by">Created by <%= @bar.user.username %></p>
+    <% if @bar.user %>
+      <p class="created-by">Created by <%= @bar.user.username %></p>
+    <% end %>
 
 <br />
 <div class="bar-show-details">
