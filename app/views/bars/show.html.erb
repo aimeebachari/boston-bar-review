@@ -8,18 +8,15 @@
       <h3>Rating: <%= @average.to_f.round(1) %> </h3>
     <% end %>
 
-    <br/>
-    <br/>
-    <div class="bar-title">
-      <h1> <%= @bar.name %> </h1>
-    </div>
+<br />
+<h1> <%= @bar.name %> </h1>
 
-    <div class="bar-details">
+    <div id="bar-details">
       <p> <%= @bar.address %> </p>
       <p> <%= @bar.city %>, <%= @bar.state %>, <%= @bar.zip %> </p>
     </div>
 
-    <div class="bar-details">
+    <div id="bar-details">
       <% unless @bar.description.nil? %>
         <p> <%= @bar.description %> </p>
       <% end %>
@@ -47,7 +44,26 @@
 
 </div>
 
-<div id="ReviewList"></div>
+<h3>Reviews:</h3>
+
+<div>
+  <% unless @bar.reviews.nil? %>
+    <ul>
+      <% @bar.reviews.each do |review| %>
+        <% if @user.id == review.user_id || @user.admin? %>
+          <li> <%= review.rating %> | <%= review.body %> |
+            <%= link_to 'Edit', edit_bar_review_path(@bar, review) %> |
+            <%= link_to 'Delete', bar_review_path(@bar, review), method: :delete, params:{review: review.id}, data: {confirm: "Are you sure?"} %>
+            <h1 class="item-title" data-id="<%= review.id.to_s %>" id="<%= review.id.to_s %>"</h1>
+          </li>
+        <% else %>
+          <li> <%= review.rating %> | <%= review.body %> </li>
+        <% end %>
+      <% end %>
+    </ul>
+  <% end %>
+  <div id="ReviewList"></div>
+</div>
 
 <div>
   <%= link_to "Add Review", new_bar_review_path(@bar) %>

@@ -1,8 +1,6 @@
 require 'rails_helper'
 require "database_cleaner"
 
-# Changed Reviews to React
-
 DatabaseCleaner.strategy = :truncation
 
 RSpec.feature 'user can add reviews' do
@@ -40,7 +38,7 @@ RSpec.feature 'user can add reviews' do
     expect(page).to have_content("Review created successfully!")
   end
 
-  xscenario 'successfully with description' do
+  scenario 'successfully with description' do
     login_as_user(user_one)
     visit bar_path(bar_one)
     click_on 'Add Review'
@@ -103,7 +101,7 @@ RSpec.feature 'user can edit reviews' do
     bar: bar_one,
     )}
 
-  xscenario 'successfully' do
+  scenario 'successfully' do
     login_as_user(user_one)
     visit bar_path(bar_one)
 
@@ -142,6 +140,10 @@ RSpec.feature 'user can edit reviews' do
   end
 
   scenario "get kicked back if they manually enter URL and didn't create" do
+
+
+
+
     login_as_user(user_two)
     visit "/bars/#{bar_one.id}/reviews/#{review_one.id}/edit"
 
@@ -191,7 +193,7 @@ RSpec.feature 'user can destroy reviews' do
     fill_in 'Review', with: 'This will delete'
     click_on 'Submit Review'
 
-    expect(page).to have_content('Review created successfully!')
+    expect(page).to have_content('This will delete')
 
     click_on 'Edit Bar'
     click_on 'Delete'
@@ -200,7 +202,7 @@ RSpec.feature 'user can destroy reviews' do
 
   end
 
-  scenario 'can not delete a review they didnt write' do
+scenario 'can not delete a review they didnt write' do
     login_as_user(user_one)
     visit bar_path(bar_one)
     click_on 'Add Review'
