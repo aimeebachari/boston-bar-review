@@ -54,6 +54,7 @@
           <li> <%= review.rating %> | <%= review.body %> |
             <%= link_to 'Edit', edit_bar_review_path(@bar, review) %> |
             <%= link_to 'Delete', bar_review_path(@bar, review), method: :delete, params:{review: review.id}, data: {confirm: "Are you sure?"} %>
+            <h1 class="item-title" data-id="<%= review.id.to_s %>" id="<%= review.id.to_s %>"</h1>
           </li>
         <% else %>
           <li> <%= review.rating %> | <%= review.body %> </li>
@@ -61,6 +62,7 @@
       <% end %>
     </ul>
   <% end %>
+  <div id="ReviewList"></div>
 </div>
 
 <div>

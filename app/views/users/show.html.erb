@@ -1,0 +1,24 @@
+<div class="row container" id="edit-page">
+  <div class="columns large-4 small-12" id="edit-form">
+    </br>
+    <h3><%= @user.first_name %> <%= @user.last_name %></h3>
+    <li>Username: <%= @user.username %></li>
+    <li>Email: <%= @user.email %></li>
+    <br/>
+
+    <h4>Bars Created:</h4>
+    <% unless @user.bars.empty? %>
+      <ul>
+        <% @user.bars.each do |bar| %>
+          <li><%= link_to "#{bar.name}", "/bars/#{bar.id}" %></li>
+        <% end %>
+      </ul>
+    <% end %>
+  </div>
+
+  <div class="columns large-4 small-12" id="edit-form">
+    <br/>
+    <br/>
+    <p class="image"><%= image_tag @user.avatar %></p>
+  </div>
+</div>

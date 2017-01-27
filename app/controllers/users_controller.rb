@@ -7,6 +7,10 @@ class UsersController < ApplicationController
     @users = User.all
   end
 
+  def show
+    @user = current_user
+  end
+
   def destroy
     @user = User.find(params[:id])
     if current_user.admin?
