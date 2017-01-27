@@ -3,8 +3,17 @@
   <div class="barlist columns large-6 small-12">
     <div>
       <h3>Get Your Drink On 🍻</h3>
-      <div id="BarList">
-      </div>
+
+      <% if !@bars.nil? %>
+        <ul>
+          <% @bars.each do |bar| %>
+            <li><%= link_to "#{bar.name}", "/bars/#{bar.id}" %></li>
+          <% end %>
+        </ul>
+      <% else %>
+        <li>No bars matched your search!</li>
+      <% end %>
+
     </div>
   </div>
 

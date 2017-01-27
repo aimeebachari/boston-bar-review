@@ -147,3 +147,9 @@ h4 {
 #ReviewList {
   color: white;
 }
+
+ul {
+    padding: 0;
+    list-style-type: none;
+    margin: 0;
+}

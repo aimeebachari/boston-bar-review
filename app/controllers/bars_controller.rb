@@ -1,11 +1,7 @@
 class BarsController < ApplicationController
 
   def index
-    if params[:term]
-      @bars = Bar.search(params[:term])
-    else
-      @bars = Bar.all
-    end
+    @bars = Bar.all
     @bar = Bar.new
   end
 
