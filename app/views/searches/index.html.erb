@@ -4,15 +4,15 @@
     <div>
       <h3>Get Your Drink On 🍻</h3>
 
-      <% if !@bars.nil? %>
-        <ul>
-          <% @bars.each do |bar| %>
-            <li><%= link_to "#{bar.name}", "/bars/#{bar.id}" %></li>
-          <% end %>
-        </ul>
-      <% else %>
-        <li>No bars matched your search!</li>
-      <% end %>
+      <ul>
+        <% if !@bars.empty? %>
+            <% @bars.each do |bar| %>
+              <li><%= link_to "#{bar.name}", "/bars/#{bar.id}" %></li>
+            <% end %>
+        <% else %>
+          <li>No bars matched your search!</li>
+        <% end %>
+      </ul>
 
     </div>
   </div>
