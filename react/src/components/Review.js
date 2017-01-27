@@ -22,7 +22,7 @@ class Review extends Component {
       downvote = <i className="fa fa-thumbs-o-down" aria-hidden="true" onClick={this.props.handleDownvote}></i>;
     }
 
-    if (this.props.currentUser.id === this.props.user_id) {
+    if (this.props.currentUser.id === this.props.user_id || this.props.currentUser.admin === true) {
       edit = <span> | <a href={`/bars/${this.props.barId}/reviews/${this.props.id}/edit`}>Edit</a></span>;
       destroy = <span> | <a href="javascript:;" onClick={this.props.handleDelete} id={`destroy-${this.props.id}`}>Delete</a></span>;
     }
